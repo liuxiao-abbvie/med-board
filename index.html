@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Allergan Aesthetics AMI 竞品情报仪表盘 | AMI Intel Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+SC:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =================================================================
+   ALLERGAN AESTHETICS AMI — COMPETITIVE INTELLIGENCE DASHBOARD
+   Design: Multi-Theme Luxury Intelligence Dashboard
+   Themes: Chanel High-Luxury / Data Monitor Blue / Allergan Burgundy
+   ================================================================= */
+
+/* ----- RESET & CSS VARIABLES ----- */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --radius: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --sidebar-width: 230px;
+  --header-height: 0px;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.45s ease;
+  --font-display: 'Noto Serif SC', 'Cormorant Garamond', 'Microsoft YaHei', '微软雅黑', serif;
+  --font-body: 'Noto Sans SC', 'Microsoft YaHei', '微软雅黑', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', 'Microsoft YaHei', monospace;
+}
+
+/* =================================================================
+   THEME 1: CHANEL HIGH-LUXURY (default)
+   ================================================================= */
+:root[data-theme="chanel"], :root:not([data-theme]) {
+  --bg-deep: #F5F1EB;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FBF9F6;
+  --bg-sidebar: #FFFFFF;
+  --bg-input: #F7F3ED;
+  --accent: #B8963E;
+  --accent-dark: #111111;
+  --accent-dim: rgba(184,150,62,0.06);
+  --accent-glow: rgba(184,150,62,0.1);
+  --threat: #A52A2A;
+  --threat-dim: rgba(165,42,42,0.06);
+  --threat-glow: rgba(165,42,42,0.08);
+  --warning: #C49A6C;
+  --warning-dim: rgba(196,154,108,0.08);
+  --warning-glow: rgba(196,154,108,0.1);
+  --positive: #4A6741;
+  --positive-dim: rgba(74,103,65,0.06);
+  --positive-glow: rgba(74,103,65,0.08);
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-muted: #9B9B9B;
+  --border: rgba(17,17,17,0.08);
+  --border-hover: rgba(17,17,17,0.2);
+  --shadow: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg: 0 2px 12px rgba(0,0,0,0.06);
+  --sidebar-border: var(--accent-dark);
+  --table-header-bg: var(--accent-dark);
+  --table-header-color: #FFFFFF;
+  --filter-active-bg: var(--accent-dark);
+  --filter-active-color: #FFFFFF;
+  --stat-accent-color: var(--accent-dark);
+  --sidebar-text: var(--text-primary);
+  --sidebar-text-muted: var(--text-muted);
+  --sidebar-title: var(--accent-dark);
+  --sidebar-footer-border: rgba(17,17,17,0.06);
+}
+
+/* =================================================================
+   THEME 2: DATA MONITOR CLASSIC BLUE
+   ================================================================= */
+:root[data-theme="monitor"] {
+  --bg-deep: #0A1628;
+  --bg-card: #112240;
+  --bg-card-hover: #1A2F50;
+  --bg-sidebar: #0D1F3A;
+  --bg-input: #162A4A;
+  --accent: #00D4FF;
+  --accent-dark: #00D4FF;
+  --accent-dim: rgba(0,212,255,0.08);
+  --accent-glow: rgba(0,212,255,0.15);
+  --threat: #FF4757;
+  --threat-dim: rgba(255,71,87,0.1);
+  --threat-glow: rgba(255,71,87,0.15);
+  --warning: #FFB142;
+  --warning-dim: rgba(255,177,66,0.1);
+  --warning-glow: rgba(255,177,66,0.12);
+  --positive: #2ED573;
+  --positive-dim: rgba(46,213,115,0.08);
+  --positive-glow: rgba(46,213,115,0.12);
+  --text-primary: #E8ECF1;
+  --text-secondary: #8899AA;
+  --text-muted: #5A6D82;
+  --border: rgba(0,212,255,0.12);
+  --border-hover: rgba(0,212,255,0.3);
+  --shadow: 0 1px 4px rgba(0,0,0,0.3);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.5);
+  --sidebar-border: var(--border);
+  --table-header-bg: #0D1F3A;
+  --table-header-color: var(--accent);
+  --filter-active-bg: var(--accent);
+  --filter-active-color: #0A1628;
+  --stat-accent-color: var(--accent);
+  --sidebar-text: #8899AA;
+  --sidebar-text-muted: #4A6078;
+  --sidebar-title: var(--accent);
+  --sidebar-footer-border: rgba(0,212,255,0.1);
+}
+
+/* =================================================================
+   THEME 3: ALLERGAN PPT TEMPLATE (BURGUNDY + DEEP BLUE)
+   ================================================================= */
+/* Allergan theme — Juvéderm Purple driven by actual PPT template   */
+:root[data-theme="allergan"] {
+  --bg-deep: #F4EFF4;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F9F2F9;
+  --bg-sidebar: #1A0E16;
+  --bg-input: #F6F0F5;
+  --accent: #8B007C;
+  --accent-dark: #5B0055;
+  --accent-dim: rgba(139,0,124,0.06);
+  --accent-glow: rgba(139,0,124,0.12);
+  --threat: #8B007C;
+  --threat-dim: rgba(139,0,124,0.08);
+  --threat-glow: rgba(139,0,124,0.12);
+  --warning: #C8943A;
+  --warning-dim: rgba(200,148,58,0.1);
+  --warning-glow: rgba(200,148,58,0.12);
+  --positive: #3A7D5A;
+  --positive-dim: rgba(58,125,90,0.06);
+  --positive-glow: rgba(58,125,90,0.08);
+  --text-primary: #1A0E20;
+  --text-secondary: #4A2E50;
+  --text-muted: #8A6E90;
+  --border: rgba(139,0,124,0.1);
+  --border-hover: rgba(139,0,124,0.3);
+  --shadow: 0 1px 3px rgba(90,0,80,0.04);
+  --shadow-lg: 0 2px 12px rgba(90,0,80,0.08);
+  --sidebar-border: var(--accent-dark);
+  --table-header-bg: #8B007C;
+  --table-header-color: #FFFFFF;
+  --filter-active-bg: var(--accent);
+  --filter-active-color: #FFFFFF;
+  --stat-accent-color: var(--accent-dark);
+  --sidebar-text: #D0C8E0;
+  --sidebar-text-muted: #9888B0;
+  --sidebar-title: #FFFFFF;
+  --sidebar-footer-border: rgba(255,255,255,0.1);
+}
+
+/* ----- PER-THEME BACKGROUND & SCROLLBAR ----- */
+:root[data-theme="chanel"] body::before,
+:root:not([data-theme]) body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background: #F5F1EB;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.003) 2px, rgba(0,0,0,0.003) 4px);
+}
+:root[data-theme="monitor"] body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background: #0A1628;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(0,212,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(0,212,255,0.02) 0%, transparent 50%);
+}
+:root[data-theme="allergan"] body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background: #F4EFF4;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(200,60,80,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(35,55,110,0.03) 0%, transparent 50%);
+}
+
+/* scrollbar — chanel / allergan light */
+:root[data-theme="chanel"] ::-webkit-scrollbar,
+:root:not([data-theme]) ::-webkit-scrollbar,
+:root[data-theme="allergan"] ::-webkit-scrollbar { width: 5px; }
+:root[data-theme="chanel"] ::-webkit-scrollbar-track,
+:root:not([data-theme]) ::-webkit-scrollbar-track,
+:root[data-theme="allergan"] ::-webkit-scrollbar-track { background: var(--bg-deep); }
+:root[data-theme="chanel"] ::-webkit-scrollbar-thumb,
+:root:not([data-theme]) ::-webkit-scrollbar-thumb,
+:root[data-theme="allergan"] ::-webkit-scrollbar-thumb { background: #C5BDB5; }
+:root[data-theme="chanel"] ::-webkit-scrollbar-thumb:hover,
+:root:not([data-theme]) ::-webkit-scrollbar-thumb:hover,
+:root[data-theme="allergan"] ::-webkit-scrollbar-thumb:hover { background: #A09890; }
+
+/* scrollbar — monitor dark */
+:root[data-theme="monitor"] ::-webkit-scrollbar { width: 5px; }
+:root[data-theme="monitor"] ::-webkit-scrollbar-track { background: #0D1F3A; }
+:root[data-theme="monitor"] ::-webkit-scrollbar-thumb { background: #1A3A60; }
+:root[data-theme="monitor"] ::-webkit-scrollbar-thumb:hover { background: #2A5078; }
+
+
+/* ----- SIDEBAR (DESKTOP) · PER-THEME PANEL ----- */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  border-right: 2px solid var(--sidebar-border);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sidebar-header {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--sidebar-footer-border);
+}
+.sidebar-logo {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 6px;
+  color: var(--sidebar-title);
+  text-transform: uppercase;
+  font-family: var(--font-display);
+}
+.sidebar-subtitle {
+  font-size: 9px;
+  color: var(--sidebar-text-muted);
+  margin-top: 6px;
+  font-family: var(--font-body);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.sidebar-divider {
+  height: 1px;
+  background: var(--sidebar-footer-border);
+  margin: 0 24px;
+}
+.sidebar-status {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 14px; font-size: 10px; color: var(--positive);
+  font-family: var(--font-mono); font-weight: 400;
+  letter-spacing: 1px;
+}
+.sidebar-status-dot {
+  width: 5px; height: 5px; background: var(--positive);
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.sidebar-section-label {
+  padding: 16px 24px 6px;
+  font-size: 8px;
+  color: var(--sidebar-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+.sidebar-nav { flex: 1; padding: 2px 0; }
+.sidebar-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 24px; cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 12px; color: var(--sidebar-text);
+  position: relative;
+  font-weight: 300;
+  font-family: var(--font-body);
+  letter-spacing: 0.5px;
+}
+.sidebar-nav-item::after {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px; background: var(--accent);
+  transform: scaleY(0); transition: transform 0.25s ease;
+}
+.sidebar-nav-item:hover {
+  background: var(--accent-dim);
+  color: var(--sidebar-title);
+}
+.sidebar-nav-item.active {
+  background: var(--accent-dim);
+  color: var(--sidebar-title);
+  font-weight: 500;
+}
+.sidebar-nav-item.active::after { transform: scaleY(1); }
+.sidebar-nav-item .nav-badge {
+  margin-left: auto;
+  font-size: 8px;
+  background: var(--threat-dim);
+  color: var(--threat);
+  padding: 1px 7px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.sidebar-nav-icon { font-size: 14px; width: 22px; text-align: center; line-height: 1; opacity: 0.6; }
+.sidebar-nav-item.active .sidebar-nav-icon { opacity: 1; }
+
+/* ----- THEME SWITCHER ----- */
+.theme-switcher {
+  padding: 12px 24px 14px;
+  border-top: 1px solid var(--sidebar-footer-border);
+}
+.theme-switcher-label {
+  font-size: 8px;
+  color: var(--sidebar-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.theme-switcher-btns {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.theme-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--sidebar-text);
+  font-size: 10px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  font-weight: 300;
+  position: relative;
+}
+.theme-btn:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--sidebar-title);
+}
+.theme-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--sidebar-title);
+  font-weight: 500;
+}
+.theme-btn .theme-dot {
+  width: 10px; height: 10px;
+  flex-shrink: 0;
+}
+.theme-dot.chanel   { background: #B8963E; border: 1px solid #8E7A2E; }
+.theme-dot.monitor  { background: #00D4FF; border: 1px solid #0099CC; }
+.theme-dot.allergan { background: #8B007C; border: 1px solid #5B0055; }
+
+.sidebar-footer {
+  padding: 18px 24px;
+  border-top: 1px solid var(--sidebar-footer-border);
+  font-size: 9px; color: var(--sidebar-text-muted);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-weight: 300;
+}
+.sidebar-footer strong { color: var(--sidebar-title); font-weight: 500; }
+
+/* ----- MAIN CONTENT · AIRY LUXURY CANVAS ----- */
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 36px 48px 48px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* ----- PAGE TRANSITIONS ----- */
+.tab-panel {
+  display: none;
+  animation: fadeSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tab-panel.active { display: block; }
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- PAGE HEADER · SERIF ELEGANCE ----- */
+.page-header { margin-bottom: 32px; }
+.page-title {
+  font-size: 28px; font-weight: 300; color: var(--text-primary);
+  margin-bottom: 4px; letter-spacing: 0px;
+  font-family: var(--font-display);
+}
+.page-subtitle {
+  font-size: 13px; color: var(--text-muted);
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+/* ----- BREADCRUMB · GOLD DUST TRAIL ----- */
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px; font-size: 11px; color: var(--text-muted);
+  font-family: var(--font-body); font-weight: 300;
+}
+.breadcrumb span { color: var(--accent-dark); }
+
+/* ----- STAT CARDS · TAILORED POCKETS ----- */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-bottom: 32px;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.stat-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.stat-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.05); }
+.stat-card:hover::before { transform: scaleX(1); }
+.stat-label {
+  font-size: 10px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 2px;
+  font-family: var(--font-body); margin-bottom: 10px;
+  font-weight: 300;
+}
+.stat-value { font-size: 34px; font-weight: 300; font-family: var(--font-display); transition: color 0.3s ease; }
+.stat-value.accent { color: var(--accent-dark); }
+.stat-value.threat { color: var(--threat); }
+.stat-value.positive { color: var(--positive); }
+.stat-value.warning { color: var(--warning); }
+.stat-change { font-size: 11px; margin-top: 6px; font-family: var(--font-body); font-weight: 300; }
+.stat-change.up { color: var(--threat); }
+.stat-change.down { color: var(--positive); }
+.stat-change.neutral { color: var(--text-muted); }
+.stat-source {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 9px; color: var(--text-muted); margin-top: 10px;
+  font-family: var(--font-body); font-weight: 300;
+  opacity: 0.5; transition: opacity var(--transition-fast);
+}
+.stat-card:hover .stat-source { opacity: 0.8; color: var(--accent); }
+.stat-source-icon { font-size: 10px; }
+
+/* ----- PRODUCT HIGHLIGHT · SIGNATURE STRIPE ----- */
+.product-highlight {
+  background: var(--bg-card);
+  border-top: 2px solid var(--accent-dark);
+  border-bottom: 2px solid var(--accent-dark);
+  padding: 26px 30px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.product-highlight::before {
+  content: '';
+  position: absolute; top: 4px; left: 0; right: 0; bottom: 4px;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  opacity: 0.2; pointer-events: none;
+}
+.product-highlight-title {
+  font-size: 9px; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 3px;
+  font-family: var(--font-body); margin-bottom: 8px;
+  font-weight: 400;
+}
+.product-highlight-text {
+  font-size: 18px; font-weight: 300; color: var(--text-primary);
+  font-family: var(--font-display); line-height: 1.4;
+}
+.product-highlight-sub {
+  font-size: 13px; color: var(--text-secondary); margin-top: 8px;
+  max-width: 720px; font-weight: 300; line-height: 1.6;
+}
+.product-highlight-link {
+  font-size: 12px; margin-top: 12px; display: inline-block;
+  font-weight: 300;
+}
+
+/* ----- THREAT CARDS · REFINED ALERT NOTES ----- */
+.threat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px; margin-bottom: 32px;
+}
+.threat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 22px 24px;
+  position: relative;
+  transition: all 0.35s ease;
+  cursor: default;
+  overflow: hidden;
+}
+.threat-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--accent-dim);
+  opacity: 0; transition: opacity var(--transition-normal);
+}
+.threat-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+  border-color: var(--border-hover);
+}
+.threat-card:hover::before { opacity: 1; }
+.threat-card .threat-badge {
+  position: absolute; top: 18px; right: 20px;
+  font-size: 9px; font-weight: 400; padding: 3px 10px;
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.threat-card.critical { border-left: 3px solid var(--threat); }
+.threat-card.critical .threat-badge { background: var(--threat-dim); color: var(--threat); }
+.threat-card.high { border-left: 3px solid var(--warning); }
+.threat-card.high .threat-badge { background: var(--warning-dim); color: var(--warning); }
+.threat-card.medium { border-left: 3px solid var(--warning); }
+.threat-card.medium .threat-badge { background: var(--warning-dim); color: var(--warning); }
+.threat-card.low { border-left: 3px solid #D5D0C8; }
+.threat-card.low .threat-badge { background: rgba(0,0,0,0.03); color: var(--text-muted); }
+.threat-card-company {
+  font-size: 15px; font-weight: 300; color: var(--text-primary);
+  margin-bottom: 2px; padding-right: 80px;
+  font-family: var(--font-display); letter-spacing: 0.5px;
+}
+.threat-card-product {
+  font-size: 12px; color: var(--accent); margin-bottom: 10px;
+  font-family: var(--font-body); font-weight: 300;
+}
+.threat-card-desc {
+  font-size: 12px; color: var(--text-secondary);
+  line-height: 1.65; margin-bottom: 14px; font-weight: 300;
+}
+.threat-card-link { font-size: 11px; font-weight: 300; }
+
+/* ----- SECTION COMMONS · DOUBLE LINE MOTIF ----- */
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.section-title {
+  font-size: 17px; font-weight: 300; color: var(--text-primary);
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); letter-spacing: 0.5px;
+}
+.section-title-icon { color: var(--accent-dark); font-size: 14px; }
+.section-divider {
+  height: 1px; background: var(--accent-dark); margin: 24px 0;
+  position: relative; opacity: 0.15;
+}
+.section-divider::after {
+  content: '';
+  position: absolute; left: 0; top: 3px;
+  width: 40px; height: 1px; background: var(--accent); opacity: 0.5;
+}
+
+/* ----- FILTER BUTTONS · REFINED SELECTORS ----- */
+.filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 6px 18px;
+  font-size: 11px; cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+.filter-btn:hover { border-color: var(--accent-dark); color: var(--accent-dark); }
+.filter-btn.active {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #FFFFFF;
+  font-weight: 400;
+}
+
+/* ----- SEARCH · ELEGANT INPUT ----- */
+.search-wrap { position: relative; }
+.search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 13px; color: var(--text-muted); pointer-events: none;
+}
+.search-box {
+  background: var(--bg-input); border: 1px solid var(--border);
+  color: var(--text-primary); padding: 10px 16px 10px 36px;
+  font-size: 12px; width: 260px;
+  outline: none; font-family: var(--font-body); font-weight: 300;
+  transition: all var(--transition-fast);
+}
+.search-box:focus { border-color: var(--accent-dark); box-shadow: none; }
+.search-box::placeholder { color: var(--text-muted); }
+
+/* ----- EVENT LIST (REGULATORY) · GOLD TIMELINE ----- */
+.event-list { display: flex; flex-direction: column; gap: 0px; }
+.event-item {
+  background: var(--bg-card); border-bottom: 1px solid var(--border);
+  padding: 16px 0px;
+  display: flex; gap: 16px; align-items: flex-start;
+  transition: all var(--transition-fast);
+}
+.event-item:first-child { border-top: 1px solid var(--border); }
+.event-item:hover { background: var(--bg-card-hover); padding-left: 12px; }
+.event-date {
+  font-family: var(--font-body); font-size: 10px;
+  color: var(--accent); white-space: nowrap; min-width: 90px;
+  font-weight: 400; letter-spacing: 1px; text-transform: uppercase;
+}
+.event-text { font-size: 13px; color: var(--text-primary); flex: 1; line-height: 1.5; font-weight: 300; }
+.event-text a, .event-text a:visited {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.event-text a:hover { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
+.event-text a::after {
+  content: ' ↗'; font-size: 10px; color: var(--accent); opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.event-text a:hover::after { opacity: 0.6; }
+.event-link { font-size: 11px; white-space: nowrap; }
+.event-cat {
+  font-size: 9px; padding: 3px 10px;
+  font-family: var(--font-body); white-space: nowrap;
+  font-weight: 400; letter-spacing: 1px; text-transform: uppercase;
+}
+.event-cat.ha { background: var(--accent-dim); color: var(--accent-dark); }
+.event-cat.botox { background: var(--threat-dim); color: var(--threat); }
+.event-cat.industry { background: var(--warning-dim); color: var(--warning); }
+.event-cat.water { background: #e3f2fd; color: #1976d2; }
+
+/* ----- LITERATURE CARDS · ACADEMIC NOTES ----- */
+.lit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+.lit-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 20px 24px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.lit-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.lit-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  transform: translateY(-1px);
+}
+.lit-card:hover::after { transform: scaleX(1); }
+.lit-card-authors { font-size: 11px; color: var(--text-muted); font-weight: 300; }
+.lit-card-journal {
+  font-size: 10px; color: var(--accent);
+  font-family: var(--font-body); margin: 4px 0 8px;
+  font-weight: 400; letter-spacing: 1px; text-transform: uppercase;
+}
+.lit-card-title {
+  font-size: 14px; font-weight: 400; color: var(--accent-dark); line-height: 1.5; margin-bottom: 12px;
+  font-family: var(--font-display);
+}
+.lit-card-title a, .lit-card-title a:visited {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+.lit-card-title a:hover { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
+.lit-card-meta {
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+}
+.lit-card-badge {
+  font-size: 9px; padding: 2px 10px;
+  font-family: var(--font-body); font-weight: 400; letter-spacing: 1px;
+}
+.lit-card-badge.ha { background: var(--accent-dim); color: var(--accent-dark); }
+.lit-card-badge.botox { background: var(--threat-dim); color: var(--threat); }
+.lit-card-badge.regen { background: var(--positive-dim); color: var(--positive); }
+.lit-card-badge.caha { background: var(--warning-dim); color: var(--warning); }
+.lit-card-badge.water { background: #e3f2fd; color: #1976d2; }
+.lit-card-pmid { font-size: 10px; font-family: var(--font-mono); color: var(--text-muted); font-weight: 300; }
+.lit-card-link { font-size: 11px; margin-left: auto; font-weight: 300; }
+.lit-card-empty {
+  grid-column: 1 / -1;
+  text-align: center; padding: 48px; color: var(--text-muted);
+  font-size: 13px; font-weight: 300;
+}
+
+/* ----- KOL CARDS · THOUGHT LEADERS ----- */
+.kol-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.kol-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 22px 24px;
+  transition: all 0.3s ease;
+}
+.kol-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+.kol-card-date {
+  font-family: var(--font-body); font-size: 10px;
+  color: var(--accent); font-weight: 400; letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.kol-card-name { font-size: 17px; font-weight: 300; margin: 4px 0 10px; color: var(--text-primary); font-family: var(--font-display); }
+.kol-card-name a, .kol-card-name a:visited {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+.kol-card-name a:hover { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
+.kol-card-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 12px; font-weight: 300; }
+.kol-card-link { font-size: 11px; }
+
+.kol-quote {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-dark);
+  padding: 18px 20px; margin: 0 0 14px;
+  font-size: 14px; color: var(--text-secondary);
+  font-style: italic; line-height: 1.65; font-family: var(--font-display);
+}
+.kol-quote-author {
+  font-size: 11px; color: var(--accent-dark); margin-top: 8px;
+  font-style: normal; font-weight: 400; font-family: var(--font-body);
+}
+.kol-quote-zh {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-secondary);
+  font-style: normal; line-height: 1.7; font-weight: 300;
+}
+.kol-quote-source {
+  margin-top: 10px; font-size: 11px;
+}
+.kol-quote-source a {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px; margin-right: 4px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border);
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-size: 10px; transition: all 0.2s; font-weight: 300;
+}
+.kol-quote-source a:hover {
+  background: var(--accent-dark);
+  color: #FFFFFF;
+  border-color: var(--accent-dark);
+}
+
+/* ----- MATRIX TABLE · HAUTE COUTURE GRID ----- */
+.matrix-section { margin-bottom: 40px; }
+.matrix-wrap { overflow-x: auto; border: 1px solid var(--border); }
+.matrix-table {
+  width: 100%; border-collapse: collapse; font-size: 11px;
+  background: var(--bg-card); min-width: 700px; table-layout: fixed;
+}
+.matrix-table thead th {
+  background: var(--accent-dark); padding: 12px 16px; text-align: left;
+  font-size: 9px; color: #FFFFFF;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  font-family: var(--font-body); font-weight: 400;
+  border-bottom: 2px solid var(--accent-dark);
+  position: sticky; top: 0; z-index: 1;
+}
+.matrix-table thead th:first-child {
+  position: sticky; top: 0; left: 0; z-index: 3;
+}
+.matrix-table tbody td {
+  padding: 13px 12px; border-bottom: 1px solid var(--border);
+  color: var(--text-secondary); vertical-align: middle; font-weight: 300; font-size: 11px;
+  word-break: break-word; overflow-wrap: anywhere; line-height: 1.5;
+}
+.matrix-table tbody td:first-child {
+  position: sticky; left: 0; z-index: 2;
+  background: var(--bg-card);
+  box-shadow: 2px 0 4px rgba(0,0,0,0.06);
+}
+.matrix-table tbody tr:last-child td { border-bottom: none; }
+.matrix-table tbody tr { transition: background var(--transition-fast); }
+.matrix-table tbody tr:hover { background: var(--accent-dim); }
+.matrix-table tbody tr:hover td { color: var(--text-primary); }
+.matrix-table tbody tr:hover td:first-child { background: var(--accent-dim); }
+.matrix-table .cmp-name { color: var(--accent-dark); font-weight: 500; font-size: 12px; }
+.matrix-table .cmp-name a, .matrix-table .cmp-name a:visited {
+  color: var(--accent-dark); text-decoration: none; transition: color var(--transition-fast); cursor: pointer;
+}
+.matrix-table .cmp-name a:hover { color: var(--accent); text-decoration: none; }
+.matrix-table .update-link a, .matrix-table .update-link a:visited {
+  color: var(--text-secondary); text-decoration: none; transition: color var(--transition-fast); cursor: pointer;
+  font-weight: 300;
+}
+.matrix-table .update-link a:hover { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 2px; }
+.threat-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 9px; font-weight: 400; padding: 3px 10px;
+  letter-spacing: 1px;
+  font-family: var(--font-body); white-space: nowrap;
+  text-transform: uppercase;
+}
+.threat-badge.critical { background: var(--threat-dim); color: var(--threat); }
+.threat-badge.high { background: var(--warning-dim); color: var(--warning); }
+.threat-badge.medium { background: var(--warning-dim); color: var(--warning); }
+.threat-badge.low { background: var(--accent-dim); color: var(--text-muted); }
+
+/* ----- ALERT CARDS (STRATEGY) · ATTENTION NOTES ----- */
+.alert-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.alert-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 22px 24px;
+  position: relative; transition: all 0.3s ease;
+}
+.alert-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+.alert-card.critical { border-left: 3px solid var(--threat); }
+.alert-card.high { border-left: 3px solid var(--warning); }
+.alert-card.monitor { border-left: 3px solid var(--accent-dark); }
+.alert-level {
+  font-size: 9px; font-weight: 400; letter-spacing: 2px;
+  font-family: var(--font-body); margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.alert-level.critical { color: var(--threat); }
+.alert-level.high { color: var(--warning); }
+.alert-level.monitor { color: var(--accent-dark); }
+.alert-title {
+  font-size: 16px; font-weight: 300; color: var(--text-primary);
+  margin-bottom: 10px; line-height: 1.4; font-family: var(--font-display);
+}
+.alert-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; font-weight: 300; }
+.alert-actions { margin: 0; padding: 0; list-style: none; }
+.alert-actions li {
+  font-size: 11px; color: var(--text-muted);
+  margin: 5px 0; padding-left: 18px; position: relative;
+  line-height: 1.5; font-weight: 300;
+}
+.alert-actions li::before {
+  content: '→'; color: var(--accent-dark);
+  position: absolute; left: 0; top: 0; font-weight: 400;
+}
+
+/* ----- RECOMMENDATION CARDS · ACTION NOTES ----- */
+.rec-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.rec-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-top: 2px solid var(--accent-dark);
+  padding: 22px 24px;
+  transition: all 0.3s ease;
+  position: relative; overflow: hidden;
+}
+.rec-card::after {
+  content: '';
+  position: absolute; bottom: 0; right: 0;
+  width: 60px; height: 60px;
+  background: radial-gradient(circle at bottom right, var(--accent-glow), transparent 70%);
+  pointer-events: none;
+}
+.rec-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  border-color: var(--border-hover);
+}
+.rec-num {
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 300;
+  color: var(--accent); opacity: 0.2;
+  margin-bottom: 4px; line-height: 1;
+}
+.rec-title { font-size: 15px; font-weight: 300; color: var(--text-primary); margin-bottom: 8px; font-family: var(--font-display); }
+.rec-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.65; font-weight: 300; }
+
+/* ----- MOBILE BOTTOM NAV · BLACK TRIM ----- */
+.mobile-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--bg-sidebar);
+  border-top: 2px solid var(--sidebar-border);
+  z-index: 200;
+  padding: 2px 2px;
+  padding-bottom: max(2px, env(safe-area-inset-bottom));
+}
+.mobile-nav-inner {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 0;
+  flex: 1;
+}
+.mobile-nav-inner::-webkit-scrollbar { display: none; }
+.mobile-nav-item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 8px 10px; cursor: pointer; transition: all var(--transition-fast);
+  min-width: 52px; border: none; background: transparent;
+  color: var(--text-muted);
+  font-size: 9px;
+  flex-shrink: 0; font-family: var(--font-body); font-weight: 300;
+}
+.mobile-nav-item .mobile-nav-icon { font-size: 16px; transition: transform var(--transition-fast); opacity: 0.5; }
+.mobile-nav-item .mobile-nav-label { font-size: 9px; white-space: nowrap; font-weight: 300; letter-spacing: 0.5px; }
+.mobile-nav-item.active { color: var(--accent-dark); }
+.mobile-nav-item.active .mobile-nav-icon { transform: translateY(-2px); opacity: 1; }
+.mobile-nav-item:active { opacity: 0.7; }
+
+.mobile-theme-row {
+  display: flex; gap: 4px; padding: 4px 8px;
+  border-left: 1px solid var(--sidebar-footer-border);
+  flex-shrink: 0;
+}
+.mobile-theme-btn {
+  display: flex; align-items: center; gap: 3px;
+  padding: 4px 7px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-muted);
+  font-size: 8px; font-family: var(--font-body);
+  cursor: pointer; transition: all var(--transition-fast);
+  white-space: nowrap; font-weight: 300;
+}
+.mobile-theme-btn .theme-dot { width: 8px; height: 8px; flex-shrink: 0; }
+.mobile-theme-btn.active {
+  background: var(--accent-dim); border-color: var(--accent);
+  color: var(--accent-dark); font-weight: 500;
+}
+.mobile-theme-btn:active { opacity: 0.7; }
+
+/* ----- DATA REFRESH INDICATOR ----- */
+.refresh-indicator {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; color: var(--text-muted);
+  font-family: var(--font-body); margin-left: 12px; font-weight: 300;
+}
+.refresh-dot {
+  width: 4px; height: 4px;
+  background: var(--positive);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* ----- TOOLTIP ----- */
+[data-tooltip] { position: relative; }
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-dark); color: #FFFFFF;
+  padding: 6px 14px; font-size: 10px;
+  white-space: nowrap; z-index: 300;
+  font-family: var(--font-body); font-weight: 300; letter-spacing: 0.5px;
+  pointer-events: none;
+}
+
+/* ----- RESPONSIVE BREAKPOINTS ----- */
+@media (max-width: 1200px) {
+  .threat-cards, .lit-cards, .alert-cards, .rec-cards {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .main-content { padding: 32px 36px 40px; }
+}
+@media (max-width: 1024px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .threat-cards, .alert-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main-content {
+    margin-left: 0;
+    padding: 20px 16px 100px;
+  }
+  .mobile-nav { display: flex; align-items: center; }
+  .page-title { font-size: 22px; }
+  .stat-value { font-size: 26px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-card { padding: 16px; }
+  .stat-label { font-size: 9px; }
+  .threat-cards, .kol-grid, .alert-cards, .rec-cards, .lit-cards {
+    grid-template-columns: 1fr;
+  }
+  .search-box { width: 100%; }
+  .section-header { flex-direction: column; align-items: flex-start; }
+  .product-highlight { padding: 18px 20px; }
+  .product-highlight-text { font-size: 16px; }
+  .event-item { flex-wrap: wrap; padding: 16px 0; }
+  .event-date { min-width: auto; }
+  .breadcrumb { font-size: 10px; overflow-x: auto; white-space: nowrap; }
+}
+@media (max-width: 400px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .stat-value { font-size: 22px; }
+  .mobile-nav-item { padding: 6px 8px; min-width: 44px; }
+  .mobile-nav-item .mobile-nav-label { font-size: 8px; }
+  .mobile-nav-item .mobile-nav-icon { font-size: 14px; }
+}
+
+/* ----- PRINT STYLES ----- */
+@media print {
+  .sidebar, .mobile-nav { display: none !important; }
+  .main-content { margin-left: 0 !important; padding: 0 !important; }
+  body { background: white; color: black; }
+  .stat-card, .threat-card, .event-item, .lit-card, .kol-card, .alert-card, .rec-card {
+    border: 1px solid #ccc !important; break-inside: avoid;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     SIDEBAR NAVIGATION (DESKTOP)
+     ================================================================ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">AMI INTEL</div>
+    <div class="sidebar-subtitle">ALLERGAN AESTHETICS</div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-status">
+      <span class="sidebar-status-dot"></span>
+      <span id="sidebarTime">--</span>
+    </div>
+  </div>
+  <div class="sidebar-section-label">智能监控</div>
+  <nav class="sidebar-nav" id="sidebarNav"></nav>
+  <div class="theme-switcher" id="themeSwitcher">
+    <div class="theme-switcher-label">风格</div>
+    <div class="theme-switcher-btns">
+      <button class="theme-btn active" data-theme="chanel" onclick="setTheme('chanel')">
+        <span class="theme-dot chanel"></span> Chanel 高奢
+      </button>
+      <button class="theme-btn" data-theme="monitor" onclick="setTheme('monitor')">
+        <span class="theme-dot monitor"></span> 数据监控蓝
+      </button>
+      <button class="theme-btn" data-theme="allergan" onclick="setTheme('allergan')">
+        <span class="theme-dot allergan"></span> 艾尔建 紫韵
+      </button>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    <div style="margin-top:10px">
+      <strong>CONFIDENTIAL</strong><br>
+      Allergan Aesthetics<br>
+      AMI Team Only
+    </div>
+  </div>
+</aside>
+
+<!-- ================================================================
+     MAIN CONTENT AREA
+     ================================================================ -->
+<main class="main-content" id="mainContent">
+  <!-- Rendered dynamically by JS -->
+</main>
+
+<!-- ================================================================
+     MOBILE BOTTOM NAVIGATION
+     ================================================================ -->
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-inner" id="mobileNavInner"></div>
+  <div class="mobile-theme-row">
+    <button class="mobile-theme-btn active" data-theme="chanel" onclick="setTheme('chanel')"><span class="theme-dot chanel"></span>高奢</button>
+    <button class="mobile-theme-btn" data-theme="monitor" onclick="setTheme('monitor')"><span class="theme-dot monitor"></span>监控蓝</button>
+    <button class="mobile-theme-btn" data-theme="allergan" onclick="setTheme('allergan')"><span class="theme-dot allergan"></span>紫韵</button>
+  </div>
+</nav>
+
+<!-- ================================================================
+     JAVASCRIPT APPLICATION
+     ================================================================ -->
+<script>
+'use strict';
+
+/* =================================================================
+   CONFIGURATION
+   ================================================================= */
+const TABS = [
+  { id:'tab0', label:'竞品矩阵',         icon:'🗂', mobileLabel:'矩阵',   mobileIcon:'📊', section:'intel'  },
+  { id:'tab1', label:'肉毒素总览',       icon:'⚡', mobileLabel:'肉毒素', mobileIcon:'🧬', section:'monitor' },
+  { id:'tab2', label:'填充剂总览',       icon:'🔬', mobileLabel:'填充剂', mobileIcon:'💉', section:'monitor' },
+  { id:'tab3', label:'水光总览', icon:'💧', mobileLabel:'水光',   mobileIcon:'💧', section:'monitor' },
+  { id:'tab4', label:'文献追踪',         icon:'📚', mobileLabel:'文献',   mobileIcon:'📖', section:'intel'  },
+  { id:'tab5', label:'KOL动态',         icon:'🎤', mobileLabel:'KOL',    mobileIcon:'👨‍⚕', section:'intel' },
+  { id:'tab6', label:'监管雷达',         icon:'📡', mobileLabel:'监管',   mobileIcon:'🏛', section:'intel'  }
+];
+
+// Three themes available: chanel, monitor, allergan
+const BREADCRUMBS = {
+  tab0: '情报分析 / 竞品矩阵',
+  tab1: '智能监控 / 肉毒素竞品总览',
+  tab2: '智能监控 / 填充剂竞品总览',
+  tab3: '智能监控 / 水光竞品总览',
+  tab4: '情报分析 / 文献追踪',
+  tab5: '情报分析 / KOL动态',
+  tab6: '情报分析 / 监管雷达'
+};
+
+let currentTab = 'tab0';
+
+/* =================================================================
+   THEME SWITCHING
+   ================================================================= */
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('ami-dashboard-theme', theme);
+  // Update desktop sidebar button states
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.theme === theme);
+  });
+  // Update mobile bottom nav button states
+  document.querySelectorAll('.mobile-theme-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.theme === theme);
+  });
+}
+function initTheme() {
+  const saved = localStorage.getItem('ami-dashboard-theme') || 'chanel';
+  setTheme(saved);
+}
+
+/* =================================================================
+   INITIALIZATION
+   ================================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  buildNavigation();
+  switchTab('tab0');
+  updateClock();
+  setInterval(updateClock, 30000);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.target.tagName === 'INPUT') return;
+    const idx = TABS.findIndex(t => t.id === currentTab);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      const prev = (idx - 1 + TABS.length) % TABS.length;
+      switchTab(TABS[prev].id);
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      const next = (idx + 1) % TABS.length;
+      switchTab(TABS[next].id);
+    }
+  });
+});
+
+function updateClock() {
+  const now = new Date();
+  const ts = now.toISOString().replace('T',' ').slice(0,19) + ' CST';
+  const el = document.getElementById('sidebarTime');
+  if (el) el.textContent = ts;
+}
+
+/* =================================================================
+   NAVIGATION BUILDING
+   ================================================================= */
+function buildNavigation() {
+  const sidebarNav = document.getElementById('sidebarNav');
+  const mobileNavInner = document.getElementById('mobileNavInner');
+
+  sidebarNav.innerHTML = '';
+  mobileNavInner.innerHTML = '';
+
+  TABS.forEach((t, i) => {
+    // Desktop sidebar item
+    const div = document.createElement('div');
+    div.className = 'sidebar-nav-item';
+    div.setAttribute('data-tab', t.id);
+    let badgeHtml = '';
+    div.innerHTML = `<span class="sidebar-nav-icon">${t.icon}</span><span>${t.label}</span>${badgeHtml}`;
+    div.addEventListener('click', () => switchTab(t.id));
+    sidebarNav.appendChild(div);
+
+    // Mobile bottom nav item
+    const btn = document.createElement('button');
+    btn.className = 'mobile-nav-item';
+    btn.setAttribute('data-tab', t.id);
+    btn.innerHTML = `<span class="mobile-nav-icon">${t.mobileIcon}</span><span class="mobile-nav-label">${t.mobileLabel}</span>`;
+    btn.addEventListener('click', () => switchTab(t.id));
+    mobileNavInner.appendChild(btn);
+  });
+}
+
+/* =================================================================
+   TAB SWITCHING
+   ================================================================= */
+function switchTab(tabId) {
+  currentTab = tabId;
+
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-nav-item').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-tab') === tabId);
+  });
+
+  // Update mobile nav active state
+  document.querySelectorAll('.mobile-nav-item').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-tab') === tabId);
+  });
+
+  const main = document.getElementById('mainContent');
+
+  // Trigger reflow for animation
+  main.style.opacity = '0';
+  main.offsetHeight;
+  main.style.opacity = '1';
+  main.style.transition = 'opacity 0.2s ease';
+
+  // Render correct page
+  switch (tabId) {
+    case 'tab0': renderMatrix(main); break;
+    case 'tab1': renderBotox(main); break;
+    case 'tab2': renderHAFillers(main); break;
+    case 'tab3': renderSkinBooster(main); break;
+    case 'tab4': renderLiterature(main); break;
+    case 'tab5': renderKOL(main); break;
+    case 'tab6': renderRegulatory(main); break;
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* =================================================================
+   HELPER FUNCTIONS
+   ================================================================= */
+function h(tag, attrs = {}, ...children) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'className') el.className = v;
+    else if (k === 'innerHTML') el.innerHTML = v;
+    else if (k.startsWith('on')) el[k] = v;
+    else if (k === 'dataset') Object.entries(v).forEach(([dk, dv]) => { el.dataset[dk] = dv; });
+    else el.setAttribute(k, v);
+  }
+  children.forEach(c => {
+    if (typeof c === 'string') el.appendChild(document.createTextNode(c));
+    else if (c instanceof Node) el.appendChild(c);
+  });
+  return el;
+}
+
+function linkTag(url, text) {
+  return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text || url}</a>`;
+}
+
+function breadcrumbHTML(tabId) {
+  return `<div class="breadcrumb"><span>AMI INTEL</span> / ${BREADCRUMBS[tabId] || ''}</div>`;
+}
+
+/* =================================================================
+   PAGE: 填充剂竞品总览 (HA FILLER COMPETITORS) — tab2
+   ================================================================= */
+function renderHAFillers(main) {
+  const haThreats = [
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'高德美 Galderma',
+      product:'瑞蓝 (Restylane) + 塑妍萃 (Sculptra)',
+      desc:'全球医美三巨头之一，在中国完成HA填充剂（瑞蓝系列）+ 再生材料（塑妍萃PLLA）+ 肉毒素（吉适Dysport）三品类布局。2024年瑞士上市后持续加速中国市场渗透，全球学术资源强大。',
+      link:'https://www.galdermaaesthetics.com.cn/', linkText:'高德美 中国官网'
+    },
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'Merz 麦施美学',
+      product:'保柔缇 (Belotero) CPM-HA 仿生技术',
+      desc:'CPM-HA（凝聚多糖基质交联透明质酸）仿生交联技术，2025年11月中国上市。保柔缇 + 西马 + 芮得怡三品类同时进入中国，BBMT学术论坛密集投入，学术教育预算远超同行。',
+      link:'https://www.belotero.com/', linkText:'Belotero 官网'
+    },
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'华东医药 / 伊妍仕',
+      product:'少女针 Ellansé S型 (PCL+PLLA)',
+      desc:'2026-06-09 S型额部填充变更注册获NMPA受理。已覆盖500+家机构，PCL+PLLA双材料技术平台，经典M型+新S型形成产品矩阵。华东医药全品类医美战略（伊妍仕+芮妥欣+光电）。',
+      link:'https://finance.sina.com.cn/jjxw/2026-06-09/doc-iniavfsn6416813.shtml', linkText:'新浪财经'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'爱美客',
+      product:'濡白天使 (PLLA+HA) + 嗨体 (HA复合溶液)',
+      desc:'国产替代领军者。2026-06-09 嗨体获NMPA批准从颈纹扩展至面部适应症，直接对标乔雅登面颈部注射市场。濡白天使全品类覆盖PLLA+HA，橙毒（HUTOX）肉毒素形成HA+肉毒组合。2025年营收大幅增长，渠道下沉二三线及以下城市。',
+      link:'https://zhuanlan.zhihu.com/p/1996539848400581153', linkText:'知乎报道'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'华熙生物',
+      product:'润百颜 / 润致 水光针 + 微交联娃娃针',
+      desc:'透明质酸全产业链龙头，原料+制剂一体化优势。2025-04-25润百颜·玻玻获NMPA III类认证，水光针品类先行者。公司预计2026Q3获批二代微交联娃娃针，2027年或为业绩爆发元年。润百颜4-5月销售回暖，品牌认知度高，消费端影响力强。',
+      link:'https://www.sohu.com/a/1031133580_121956422', linkText:'搜狐新闻'
+    },
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'再生材料替代趋势',
+      product:'伊妍仕 / 塑妍萃 / 濡白天使 / 臻好逑 / 优法兰 / 芮得怡 / HArmonyCa 等',
+      desc:'PLLA/PCL/CaHA再生材料直接替代传统HA长效填充市场。截至2026年6月，童颜针/再生注射剂NMPA获批已达14款。2025年为CaHA合规拐点（优法兰+芮得怡相继获批），复合结构性再生技术（HA+CaHA，如艾尔建HArmonyCa）成为填充赛道新迭代方向。华熙生物、巨子生物、艾尔建等头部企业扎堆布局CaHA管线，赛道迈入技术迭代、竞争升级的增量新周期。医生端推荐倾向正在发生结构性转移，需紧急制定差异化应对策略。',
+      link:'https://mp.weixin.qq.com/s/Y-oOn54hOm1JoHzHYtpcWA', linkText:'医美部落·公众号'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'康哲药业',
+      product:'莫娜丽莎 (MONALISA) + 康哲美丽管线',
+      desc:'通过康哲美丽收购上海旭俐切入医美，莫娜丽莎为韩国进口交联HA填充剂（国械注进20233130068，HA 24mg/mL+利多卡因0.3%，中重度鼻唇沟皱纹），HY-BRID低残留交联技术，韩国首尔大学医院指定使用，累计销量超15万支，覆盖800+机构。康哲美丽持续扩充皮肤专科管线，渠道与销售能力扎实，是进口HA填充剂中性价比与渗透力兼具的玩家。',
+      link:'http://www.9191mr.com/cailiao/details?id=1995',       linkText:'莫娜丽莎NMPA获批信息'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'昊海生科',
+      product:'海薇 / 海魅 / 姣兰 + 海魅月白（有机交联）',
+      desc:'国产HA填充剂头部企业，形成差异化三件套：海薇（塑形）+姣兰（填充，2025年新增唇部适应症成国产首款唇部填充）+海魅（第三代高端线性无颗粒）。2024年第四代有机交联「海魅月白」（国械注准20243131239）获批，系国内首款氨基酸有机交联剂玻尿酸，封闭透明质酸酶作用位点、长效且低残留。医美板块「真皮填充剂+肉毒素+光电」矩阵，终端覆盖扎实。',
+      link:'https://www.3healthcare.com/', linkText:'昊海生科 官网'
+    }
+  ];
+
+  main.innerHTML = `
+    ${breadcrumbHTML('tab2')}
+    <div class="page-header">
+      <div class="page-title">🔬 填充剂竞品总览 — 乔雅登竞品监控</div>
+      <div class="page-subtitle">HA FILLER COMPETITIVE LANDSCAPE // 数据更新: 2026-07-19 19:50 CST <span class="refresh-indicator"><span class="refresh-dot"></span>LIVE</span></div>
+    </div>
+
+    <div class="stats-row">
+      <a class="stat-card" href="https://m.chinabgao.com/info/1300522.html" target="_blank" rel="noopener" title="数据来源：2025年中国玻尿酸市场规模达276.8亿元（中国报告大厅），医美填充类玻尿酸2025年销售额同比增长19.7%，2026年医美填充器械市场预计达520亿元（头豹研究院）">
+        <div class="stat-label">中国HA填充剂市场</div>
+        <div class="stat-value accent">≈250亿</div>
+        <div class="stat-change up">▲ 2025A 同比+19.7% | 2026E达320亿</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：中国报告大厅 / 头豹研究院</div>
+      </a>
+      <a class="stat-card" href="https://finance.eastmoney.com/a/202506093425571048.html" target="_blank" rel="noopener" title="数据来源：2025年再生填充材料销售额同比增长93.4%，2021-2025年CAGR 54.73%，2026年再生类填充器械市场规模预计突破180亿（头豹研究院）">
+        <div class="stat-label">再生材料市场</div>
+        <div class="stat-value warning">≈48亿</div>
+        <div class="stat-change up">▲ 2025A 同比+93.4% | 赛道爆发增长</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：东方财富 / 头豹研究院</div>
+      </a>
+      <a class="stat-card" href="https://www.sohu.com/a/1040512332_122369511" target="_blank" rel="noopener" title="数据来源：截至2026年6月，国内已获批童颜针/再生注射剂已达14款（含玮沐臻好逑等）">
+        <div class="stat-value threat">≥14款</div>
+        <div class="stat-change up">▲ 2026.06已获批童颜针/再生注射剂（含新入市臻好逑）</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：NMPA / 搜狐新闻</div>
+      </a>
+      <a class="stat-card" href="https://baijiahao.baidu.com/s?id=1850663518001792542" target="_blank" rel="noopener" title="数据来源：2025年再生材料占比快速提升至≈20%（2024年为16%），玻尿酸≈34%，肉毒素≈28%，胶原蛋白≈18%（天风证券/行业白皮书综合测算）">
+        <div class="stat-label">再生材料市场占比</div>
+        <div class="stat-value threat">≈20%</div>
+        <div class="stat-change up">▲ 2025A 占填充剂总市场（+4pp YoY）</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：天风证券 / 行业白皮书</div>
+      </a>
+    </div>
+
+    <div class="product-highlight">
+      <div class="product-highlight-title">◆ 乔雅登产品动态</div>
+      <div class="product-highlight-text">乔雅登丰颜 颞部凹陷适应症 获NMPA正式批准</div>
+      <div class="product-highlight-sub">2026年5月8日 — 乔雅登VYC-20L（Juvéderm Volux）颞部凹陷填充适应症正式获批，进一步巩固乔雅登在中国HA填充剂市场的适应症领先地位。该批准基于Montes JR et al. (PRS, 2025) 多中心RCT数据。</div>
+      <div class="product-highlight-link">${linkTag('https://zhuanlan.zhihu.com/p/2036427278855484422', '→ 艾尔建美学颞部适应症新闻')} &nbsp;|&nbsp; ${linkTag('https://pubmed.ncbi.nlm.nih.gov/39808069', '→ PubMed支持文献')}</div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:14px">
+      <span class="section-title-icon">⚠</span> TOP威胁 — HA填充剂竞品
+    </div>
+    <div class="threat-cards" id="haThreatCards"></div>
+  `;
+
+  const container = document.getElementById('haThreatCards');
+  haThreats.forEach(t => {
+    const card = h('div', { className: `threat-card ${t.lvl}` });
+    card.innerHTML = `
+      <span class="threat-badge">${t.badge}</span>
+      <div class="threat-card-company">${t.company}</div>
+      <div class="threat-card-product">${t.product}</div>
+      <div class="threat-card-desc">${t.desc}</div>
+      <div class="threat-card-link">${linkTag(t.link, t.linkText)}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+/* =================================================================
+   PAGE: 水光竞品总览 (SKIN QUALITY & HYDRATING INJECTABLE) — tab3
+   ================================================================= */
+function renderSkinBooster(main) {
+  const skinThreats = [
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'高德美 Galderma',
+      product:'瑞蓝唯瑅 (Restylane Vital / Skinboosters)',
+      desc:'国内首款进口长效交联HA水光，"水光爱马仕"。NASHA专利技术（粒径0.02-0.4mm，交联度<1%），NMPA 2019年获批手背真皮深层改善。3次疗程可维持15个月，临床提升成纤维细胞附着力、刺激胶原再生。与高德美HA填充剂+再生材料+肉毒素三品类协同，机构端综合议价能力强。',
+      link:'https://www.medbelove.com/index.php/2023/06/30/透明质酸：瑞蓝-唯瑅/', linkText:'瑞蓝唯瑅 详情'
+    },
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'华熙生物 Bloomage',
+      product:'润致·娃娃针 (微交联HA水光) + 润致·缇透 (动能水光)',
+      desc:'国产微交联HA水光标杆。临床有效率87.51%（vs非交联HA 21.88%），GAIS应答率100%，"玻胶双补"机制。华熙HA全产业链龙头（截至2025年5月持有11张注射类械三证），润百颜·玻玻2025年4月拿下国内首张基础水光械三证，润致·缇透为3款动能水光获批产品之一。价格已下沉至299-1800元区间，渠道覆盖极广。',
+      link:'https://www.medbelove.com/index.php/2023/08/22/透明质酸：润致-娃娃针/', linkText:'润致娃娃针 详情'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'菲洛嘉 Filorga / NCTF',
+      product:'NCTF 135HA — 动能素水光',
+      desc:'法国动能素水光先驱，53种营养成分+HA复合配方。非交联HA路线，主打"皮肤营养鸡尾酒"概念，在高端机构消费者认知度高。虽无NMPA三类械证（以"化妆品备案"或"二类械"灰色流通为主），但品牌影响力深远。一旦合规化落地，将直接威胁SkinVive高端定位。',
+      link:'https://www.filorga.com/', linkText:'Filorga 官网'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'丽珠兰 Rejuran ( pharmaresearch )',
+      product:'Rejuran Healer — PDRN修复水光',
+      desc:'韩国pharmaresearch研发，PDRN（聚脱氧核糖核苷酸）修复型水光，主打DNA级皮肤再生修复。与SkinVive的HA补水机制完全不同路线，但抢占同一"肤质改善"需求。在中国以水货/代购流通为主，合规化前已有强品牌认知。台湾市场已有颈纹改善off-label应用案例。',
+      link:'https://www.rejuran.com/', linkText:'Rejuran 官网'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'爱美客',
+      product:'嗨体2.5 (水光版) — 非交联HA复合溶液',
+      desc:'嗨体2.5mL水光版，非交联HA 5mg/mL + L-肌肽 + 3种氨基酸 + 维生素B2。2016年获批颈纹适应症，2026年6月新增面部适应症。爱美客溶液类注射板块2025年营收超10亿，渠道下沉二三线及以下城市。与SkinVive在"肤质改善"赛道有交叉，但嗨体机制偏"细胞赋活"而非"深层补水"。',
+      link:'https://baike.baidu.com/item/嗨体', linkText:'嗨体 百度百科'
+    },
+    {
+      lvl:'medium', badge:'🟡 持续监控',
+      company:'华熙生物 / 润百颜',
+      product:'润百颜·玻玻 (基础水光) — 国内首张械三水光证',
+      desc:'2025年4月25日NMPA获批，国内首款合规基础水光三类械证。非交联HA配方，定位中低端基础补水市场。新上市合规水光针单价多低于1000元，部分机构作为引流产品拉低单价。虽与SkinVive定位不同层级，但合规化后快速挤压非合规水货空间，改变水光市场价格体系和消费者预期。',
+      link:'https://www.sohu.com/a/1031133580_121956422', linkText:'搜狐新闻'
+    },
+    {
+      lvl:'medium', badge:'🟡 持续监控',
+      company:'海雅美 Hyamed',
+      product:'克拉·赫本 (基础水光) — 首款合规进口基础水光',
+      desc:'2025年4月30日NMPA获批，国内首款合规进口基础水光三类械证。瑞士品牌定位，非交联HA配方。与润百颜·玻玻同期获批，共同开启水光合规元年。基础水光赛道合规化后，进口品牌+国产品牌同台竞争，价格战已启动，可能压缩SkinVive未来入场的定价空间。',
+      link:'https://www.medbelove.com/index.php/2026/01/12/', linkText:'合规水光盘点'
+    }
+  ];
+
+  main.innerHTML = `
+    ${breadcrumbHTML('tab3')}
+    <div class="page-header">
+      <div class="page-title">💧 水光竞品总览 — SkinVive竞品监控</div>
+      <div class="page-subtitle">SKIN QUALITY & HYDRATING INJECTABLE LANDSCAPE // 数据更新: 2026-07-19 20:15 CST <span class="refresh-indicator"><span class="refresh-dot"></span>LIVE</span></div>
+    </div>
+
+    <div class="stats-row">
+      <a class="stat-card" href="https://so.html5.qq.com/page/real/search_news?docid=70000021_55968e3112791352" target="_blank" rel="noopener" title="数据来源：摩熵咨询《2025中国医美注射市场趋势报告》，中国水光针类产品市场规模（出厂价计）2025年约45亿元，预计2027年达80亿元，CAGR 21.5%，远超全球10.8%复合增速">
+        <div class="stat-label">中国水光针市场(出厂)</div>
+        <div class="stat-value accent">≈45亿</div>
+        <div class="stat-change up">▲ 2025A | 2027E达80亿 CAGR 21.5%</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：摩熵咨询 2025报告</div>
+      </a>
+      <a class="stat-card" href="https://news.allerganaesthetics.com/News/detail.html?releasePath=/2025/9/pr-id-123612" target="_blank" rel="noopener" title="数据来源：艾尔建美学2025年9月官方公告，全球肤质市场规模$52亿，SkinVive扩展至57个全球市场，94%消费者希望改善面部肤质">
+        <div class="stat-label">全球肤质市场</div>
+        <div class="stat-value warning">$52亿</div>
+        <div class="stat-change up">▲ SkinVive已覆盖57个全球市场</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：Allergan Aesthetics 官方</div>
+      </a>
+      <a class="stat-card" href="https://www.medbelove.com/index.php/2026/01/12/" target="_blank" rel="noopener" title="数据来源：2025年合规元年6款三类械水光获批（华熙/海雅美/乐普/格莱威/富勒烯），2026年1月再批2款，截至2026年2月已突破11证大关，涵盖9+家企业">
+        <div class="stat-label">合规三类水光产品</div>
+        <div class="stat-value threat">≥11款</div>
+        <div class="stat-change up">▲ 2025合规元年6款 | 2026.02已破11证</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：NMPA / 医美前沿</div>
+      </a>
+      <a class="stat-card" href="https://www.toutiao.com/article/7620829989377704454" target="_blank" rel="noopener" title="数据来源：超40家企业布局三类械水光产品，已获批9家，四环医药/键凯科技等推进中。新上市合规水光针单价多低于1000元，部分机构作为引流产品">
+        <div class="stat-label">布局三类水光企业</div>
+        <div class="stat-value positive">>40家</div>
+        <div class="stat-change up">▲ 已获批9家 | 单价已跌破1000元</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：聚美丽 / 行业研报</div>
+      </a>
+    </div>
+
+    <div class="product-highlight">
+      <div class="product-highlight-title">◆ SkinVive 产品动态</div>
+      <div class="product-highlight-text">SkinVive 全球扩展至57个市场 + FDA受理颈纹适应症sPMA申请</div>
+      <div class="product-highlight-sub">2025年9月23日 — 艾尔建美学宣布SkinVive扩展至35个新市场（全球累计57个），定位"$52亿全球肤质市场中最长持续补水注射剂"。FDA已受理颈纹适应症sPMA申请，临床数据显示80%患者1个月内颈纹改善≥1级，90%报告美学提升。AA Signature™多模式方案已在25国推出。国内尚未获批，水货已流通。</div>
+      <div class="product-highlight-link">${linkTag('https://news.allerganaesthetics.com/News/detail.html?releasePath=/2025/9/pr-id-123612', '→ Allergan 官方公告')} &nbsp;|&nbsp; ${linkTag('https://www.ainvest.com/news/allergan-aesthetics-strategic-innovation-market-leadership-aesthetic-medicine-2511/', '→ 市场分析')}</div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:14px">
+      <span class="section-title-icon">⚠</span> 7大水光/肤质竞品监控
+    </div>
+    <div class="threat-cards" id="skinThreatCards"></div>
+  `;
+
+  const container = document.getElementById('skinThreatCards');
+  skinThreats.forEach(t => {
+    const card = h('div', { className: `threat-card ${t.lvl}` });
+    card.innerHTML = `
+      <span class="threat-badge">${t.badge}</span>
+      <div class="threat-card-company">${t.company}</div>
+      <div class="threat-card-product">${t.product}</div>
+      <div class="threat-card-desc">${t.desc}</div>
+      <div class="threat-card-link">${linkTag(t.link, t.linkText)}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+/* =================================================================
+   PAGE: 肉毒素竞品总览 (BOTULINUM TOXIN COMPETITORS) — tab1
+   ================================================================= */
+function renderBotox(main) {
+  const botoxThreats = [
+    {
+      lvl:'medium', badge:'🟡 持续监控',
+      company:'衡力 BTXA 兰州生物',
+      product:'Botulinum Toxin Type A (BTXA)',
+      desc:'国产老牌肉毒，市占率约17%。已获批适应症：2026年4月咬肌肥大（瘦脸）、2025年11月多汗症、2012年眉间纹。性价比优势突出，基层医疗机构渗透深度高，是保妥适在价格敏感市场的主要竞争对手。',
+      link:'https://m.baidu.com/bh/m/detail/ar_10188626564730955306', linkText:'百度新闻'
+    },
+    {
+      lvl:'medium', badge:'🟡 持续监控',
+      company:'西马 Xeomin Merz',
+      product:'IncobotulinumtoxinA — 纯化肉毒',
+      desc:'市占率约15%，2025年11月中国上市，Merz三品类之一。IncobotulinumtoxinA为纯化神经毒素（无复合蛋白），差异化定位"纯净肉毒"，主打低免疫原性优势，对保妥适过敏/耐药患者有潜在吸引力。',
+      link:'https://www.xeominaesthetic.com/', linkText:'Xeomin 官网'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'乐提葆 Letybo Hugel/四环医药',
+      product:'LetibotulinumtoxinA (Letybo)',
+      desc:'市占率约10%，韩国Hugel研发，四环医药中国独家代理，代理协议续约至2030年。品牌年轻化策略（社交媒体+达人营销），在年轻消费者群体中认知度提升明显。',
+      link:'https://baike.baidu.com/item/乐提葆/67799961', linkText:'百度百科'
+    },
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'吉适 Dysport 高德美',
+      product:'AbobotulinumtoxinA (AboBoNT-A)',
+      desc:'市占率约6%，国际老牌肉毒品牌，与保妥适全球直接竞争数十年。高德美在中国已完成HA+再生+肉毒三品类布局，三大产品线品牌协同效应显著，机构端综合议价能力强。',
+      link:'https://www.galdermaaesthetics.com.cn/dysport', linkText:'吉适 中文官网'
+    },
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'达希斐 Daxxify Revance/复星医药',
+      product:'DaxibotulinumtoxinA — 长效肉毒',
+      desc:'市占率约5%，2024年9月9日NMPA获批眉间纹适应症，Revance专利肽交换技术(RTP004)，维持时间达6-9个月，显著长于现有竞品。复星医药中国独家代理，长效差异化定位。',
+      link:'https://www.daxxify.com/', linkText:'Daxxify 官网'
+    },
+    {
+      lvl:'high', badge:'🟠 高度关注',
+      company:'橙毒 HUTOX 爱美客',
+      product:'Botulinum Toxin Type A (HUTOX)',
+      desc:'市占率约5%，2026年1月8日NMPA获批，爱美客首款肉毒素产品。依托爱美客已有HA渠道网络（濡白天使等）快速铺开机构覆盖。定价策略预期偏向性价比路线。',
+      link:'https://zhuanlan.zhihu.com/p/1996539848400581153', linkText:'知乎报道'
+    },
+    {
+      lvl:'critical', badge:'🔴 极高威胁',
+      company:'芮妥欣® 华东医药',
+      product:'重组A型肉毒毒素 — 全球首款',
+      desc:'2026年3月27日NMPA获批（上市不足3个月，份额暂<1%），全球首款获批的重组A型肉毒毒素。III期临床直接对标保妥适，理论无限制产能、低免疫原性，有望2027年进入放量期。',
+      link:'https://news.qq.com/rain/a/20260327A0759200', linkText:'腾讯新闻'
+    }
+  ];
+
+  main.innerHTML = `
+    ${breadcrumbHTML('tab1')}
+    <div class="page-header">
+      <div class="page-title">⚡ 肉毒素竞品总览 — 保妥适竞品监控</div>
+      <div class="page-subtitle">BOTULINUM TOXIN COMPETITIVE LANDSCAPE // 数据更新: 2026-07-19 19:50 CST <span class="refresh-indicator"><span class="refresh-dot"></span>LIVE</span></div>
+    </div>
+
+    <div class="stats-row">
+      <a class="stat-card" href="https://caifuhao.eastmoney.com/news/20251216235633102995370" target="_blank" rel="noopener" title="数据来源：弗若斯特沙利文2025年中国肉毒毒素市场规模114亿，2025年同比增长37.4%，注射A型肉毒市场2026年约152亿（观研天下），2030年预计达390亿">
+        <div class="stat-label">中国肉毒素市场</div>
+        <div class="stat-value accent">≈152亿</div>
+        <div class="stat-change up">▲ 2026E | 2025A同比+37.4% 高速增长</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：弗若斯特沙利文 / 观研天下</div>
+      </a>
+      <a class="stat-card" href="https://www.163.com/dy/article/KBTM4TH505568W0A.html" target="_blank" rel="noopener" title="数据来源：按销售金额统计，保妥适2024年华销售额约48亿，市场份额约38%（网易/行业研报）。2026年橙毒+芮妥欣获批，衡力+保妥适双雄合计份额已降至70%以下">
+        <div class="stat-label">保妥适市占率</div>
+        <div class="stat-value warning">≈38%</div>
+        <div class="stat-change down">▼ 按销售额（2024-2025），新入局者持续蚕食</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：网易 / 行业研报</div>
+      </a>
+      <a class="stat-card" href="https://m.baidu.com/bh/m/detail/ar_9919771606371435486" target="_blank" rel="noopener" title="数据来源：截至2026年，NMPA认证的肉毒素品牌：保妥适、衡力、乐提葆、吉适、西马、达希斐、橙毒=7款（含芮妥欣待确认）。看板重点监控6个">
+        <div class="stat-label">已获批肉毒品牌</div>
+        <div class="stat-value threat">8个</div>
+        <div class="stat-change up">▲ 含2026新批：橙毒+芮妥欣 | 长效：达希斐</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：NMPA认证 / 百度健康</div>
+      </a>
+      <a class="stat-card" href="https://zhuanlan.zhihu.com/p/2032429742629050017" target="_blank" rel="noopener" title="数据来源：保妥适中国已获批适应症：皱眉纹(眉间纹)、鱼尾纹(眼周纹)、咬肌肥大(瘦脸)、额纹(抬头纹)=4个。第5个颈纹适应症尚未获批">
+        <div class="stat-label">保妥适适应症数</div>
+        <div class="stat-value positive">4个</div>
+        <div class="stat-change up">▲ 最新: 额纹适应症(2026.04.27)</div>
+        <div class="stat-source"><span class="stat-source-icon">⌘</span> 来源：艾尔建美学 / NMPA</div>
+      </a>
+    </div>
+
+    <div class="product-highlight">
+      <div class="product-highlight-title">◆ 保妥适产品动态</div>
+      <div class="product-highlight-text">保妥适 额纹适应症 获NMPA正式批准 — 第4个中国适应症</div>
+      <div class="product-highlight-sub">2026年4月27日 — 保妥适（Botox）额纹（抬头纹）适应症正式获批，成为获批适应症最多的肉毒素品牌。此举进一步巩固保妥适在肉毒素治疗领域的全面领先地位，为医生处方提供更广泛的循证依据。</div>
+      <div class="product-highlight-link">${linkTag('https://www.sohu.com/a/1015174900_313745', '→ 保妥适额纹获批新闻')} &nbsp;|&nbsp; ${linkTag('https://pubmed.ncbi.nlm.nih.gov/34224576', '→ Cochrane系统评价')}</div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:14px">
+      <span class="section-title-icon">⚠</span> 7大肉毒素竞品监控
+    </div>
+    <div class="threat-cards" id="botoxThreatCards"></div>
+  `;
+
+  const container = document.getElementById('botoxThreatCards');
+  botoxThreats.forEach(t => {
+    const card = h('div', { className: `threat-card ${t.lvl}` });
+    card.innerHTML = `
+      <span class="threat-badge">${t.badge}</span>
+      <div class="threat-card-company">${t.company}</div>
+      <div class="threat-card-product">${t.product}</div>
+      <div class="threat-card-desc">${t.desc}</div>
+      <div class="threat-card-link">${linkTag(t.link, t.linkText)}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+/* =================================================================
+   PAGE: 监管雷达 (REGULATORY RADAR) — tab6
+   ================================================================= */
+function renderRegulatory(main) {
+  const regHA = [
+    { date:'2026-06-18', text:'玮沐医疗「臻好逑」首批量产交付 — PLLA+HA复合再生填充剂正式上市，童颜针赛道第14款获批产品', cat:'ha', link:'https://www.sohu.com/a/1040512332_122369511', linkText:'搜狐新闻' },
+    { date:'2026-06-16', text:'巨子生物全球首款交联重组III型胶原蛋白颈纹填充剂获NMPA批准 — 重组胶原赛道里程碑，填补颈纹注射治疗空白', cat:'ha', link:'https://news.qq.com/rain/a/20260617A072SR00', linkText:'腾讯新闻' },
+    { date:'2026-06-14', text:'CSD2026全国皮肤性病学术年会闭幕 — 再生材料成医美注射焦点议题，童颜针竞争从"抢位"转向"红海"', cat:'ha', link:'https://baijiahao.baidu.com/s?id=1868659746516297299', linkText:'百度百家号' },
+    { date:'2026-06-09', text:'伊妍仕S型额部填充变更注册获NMPA受理 — 华东医药少女针持续扩展适应症版图', cat:'ha', link:'https://finance.sina.com.cn/jjxw/2026-06-09/doc-iniavfsn6416813.shtml', linkText:'新浪财经' },
+    { date:'2026-06-08', text:'艾尔建HArmonyCa获海外新审批，国内临床试验稳步推进 — HA+CaHA复合再生填充剂，复合结构性再生技术成为填充赛道新迭代方向', cat:'ha', link:'https://mp.weixin.qq.com/s/Y-oOn54hOm1JoHzHYtpcWA', linkText:'医美部落·公众号' },
+    { date:'2026-04-23', text:'欣可丽美学伊妍仕M型（Ellansé®恒耀™）获NMPA批准 — PCL微球面部填充剂，适用于改善成人轻中度颞部凹陷，伊妍仕再生家族矩阵再扩容', cat:'ha', link:'https://www.sohu.com/a/1015207578_122527475', linkText:'搜狐新闻' },
+    { date:'2026-05-08', text:'乔雅登丰颜颞部凹陷适应症获NMPA批准 — 艾尔建HA产品线再添关键适应症', cat:'ha', link:'https://zhuanlan.zhihu.com/p/2036427278855484422', linkText:'知乎' },
+    { date:'2026-04-03', text:'NMPA再批一款童颜针，再生材料审批节奏持续加快', cat:'ha', link:'https://www.toutiao.com/article/7617761768462385715/', linkText:'头条新闻' },
+    { date:'2025-09-30', text:'塑妍萃(Sculptra)获NMPA批准 — 高德美PLLA国际标杆产品正式进入中国市场', cat:'ha', link:'https://www.sohu.com/a/884686525_121956422', linkText:'搜狐新闻' },
+    { date:'2025-03-07', text:'芮得怡(Radiesse)获NMPA批准 — Merz全球首款CaHA填充剂进入中国，国内首款进口CaHA面部注射剂（中重度鼻唇沟矫正）', cat:'ha', link:'https://www.radiesse.com/', linkText:'Radiesse官网' },
+    { date:'2025-02-17', text:'优法兰获NMPA批准 — 国内首款CaHA面部软组织注射三类械字号（国械注准20253130390），终结CaHA跨界滥用灰色历史', cat:'ha', link:'https://aphranel.com/', linkText:'优法兰官网' }
+  ];
+
+  const regWater = [
+    { date:'2026-07-18', text:'2026下半年医美监管全面升级为"全天候覆盖" — 天津、北京、杭州、上海同日发布监管动态，水光针/肉毒素合规检查常态化，生活美容院严禁开展破皮注射项目', cat:'water', link:'https://new.qq.com/rain/a/20260718A0B4VW00', linkText:'腾讯新闻' },
+    { date:'2026-07-14', text:'多地开展医美行业专项整治行动 — 重点排查水光针等注射项目合规性，严查来源不明进口药械、无证上岗及超范围经营', cat:'water', link:'https://www.toutiao.com/article/7662215024392126986/', linkText:'头条新闻' },
+    { date:'2026-06-29', text:'敷尔佳、资生堂等企业集中布局三类医疗器械 — 水光针等品类合规门槛持续提升，二类升三类过渡期收尾，未持证产品遭批量清退', cat:'water', link:'https://ymguancha.com/post/19525.html', linkText:'医美观察' },
+    { date:'2026-06-16', text:'FDA批准SkinVive by Juvéderm用于颈部横纹改善 — 首款HA注射剂专门用于颈纹（"tech-neck"），SkinVive第二个FDA适应症，74.8%受试者1个月达临床显著改善', cat:'water', link:'https://www.prnewswire.com/news-releases/allergan-aesthetics-receives-us-fda-approval-for-skinvive-by-juvederm-for-the-improvement-of-neck-appearance-302800848.html', linkText:'AbbVie新闻稿' },
+    { date:'2026-06-16', text:'景嘉医疗"注射用透明质酸钠溶液"获NMPA批准（国械注准20263131236）— 基础水光再添合规新军，2026年上半年合规水光产品持续扩容', cat:'water', link:'https://weipuyiyao.com/news/541.html', linkText:'微谱医械' },
+    { date:'2026-06-08', text:'常州药物研究所"注射用透明质酸钠溶液"获NMPA批准（国械注准20263131179）— 40年玻尿酸研发老牌大厂入局基础水光赛道', cat:'water', link:'https://www.yimeiq.cn/index.php?id=4749&r=article/detail', linkText:'医美圈' },
+    { date:'2026-06-09', text:'爱美客嗨体新增面部适应症获批（6月3日批复/6月9日落地）— 从颈纹专用扩展至面部真皮浅层注射，实现"面颈一体"合规覆盖，嗨体十年首度扩容适应症', cat:'water', link:'https://www.medbelove.com/index.php/2026/06/15/%e5%97%a8%e4%bd%93-%e5%8e%86%e7%bb%8f%e5%8d%81%e5%b9%b4%e3%80%8c%e5%90%88%e8%a7%84%e4%b8%8a%e8%84%b8%e3%80%8d%ef%bc%8c%e5%bc%80%e5%90%af%e3%80%8c%e9%9d%a2%e9%a2%88%e4%b8%80%e4%bd%93%e3%80%8d/', linkText:'医美部落' },
+    { date:'2026-04-23', text:'普丽妍"注射用透明质酸钠和重组类胶原蛋白复合溶液"获NMPA批准（国械注准20263130839）— 国内第四家重组胶原水光针持证企业，面颊部平滑度适应症第三证', cat:'water', link:'https://www.medbelove.com/index.php/2026/05/06/%e6%99%ae%e4%b8%bd%e5%a6%8d-%e8%8e%b7%e6%89%b9%e3%80%8c%e9%9d%a2%e9%a2%8a%e5%b9%b3%e6%bb%91%e5%ba%a6%e3%80%8d%e7%ac%ac%e4%b8%89%e8%af%81%ef%bc%8c%e3%80%8c%e5%86%8d%e7%94%9f%e5%8c%bb%e7%be%8e/', linkText:'医美部落' },
+    { date:'2026-04-21', text:'诺美诺恒"注射用透明质酸钠复合溶液"获NMPA批准（国械注准20263130779）— 国内第四款复合营养类械三水光针，由微生物发酵HA及多种氨基酸复配而成', cat:'water', link:'https://weibo.com/6164450686/QChAVE2d2', linkText:'微博·医美观察零距离' },
+    { date:'2026-04-02', text:'瑞士海雅美"海维纳斯·瑅派"获NMPA批准 — 新一代长效皮肤焕活剂，36周长效焕肤，重塑ECM环境促进胶原新生，海雅美中国第4款产品', cat:'water', link:'https://m.sohu.com/a/1004615066_121303447', linkText:'搜狐新闻' },
+    { date:'2026-04-01', text:'央广网曝光"居家水光"乱象 — 韩国丽珠兰等水货产品经私域渠道违规销售，个人无资质销售涉嫌非法行医罪，最高面临十年以上有期徒刑', cat:'water', link:'https://www.cnr.cn/mspd/yw/20260401/t20260401_527569762.shtml', linkText:'央广网' },
+    { date:'2026-04-01', text:'巨子生物获III类医疗器械生产许可证 — 涵盖13-09整形及普通外科植入物，从医用敷料到植入类生物材料的关键跨越，打通"可上市"到"可量产"闭环', cat:'water', link:'https://www.ymguancha.com/tag/%E5%8D%8E%E7%86%99%E7%94%9F%E7%89%A9.html?page=1', linkText:'医美产业笔记' },
+    { date:'2026-02-10', text:'《直播电商监督管理办法》正式施行 — 实质性禁止"三品一械"达人直播推广，抖音电商已暂停居家水光等80余类医疗器械直播推广', cat:'water', link:'https://www.cnr.cn/mspd/yw/20260401/t20260401_527569762.shtml', linkText:'央广网' },
+    { date:'2026-01-08', text:'两款注射用透明质酸钠溶液同日获批（海南希睿达+杭州协合）— 2026开年合规水光提速，截至2026年1月国内已获批合规三类水光产品达10款、涵盖9家企业', cat:'water', link:'https://www.medbelove.com/index.php/2026/01/12/%E9%87%8D%E7%A3%85-%E5%90%8C%E6%97%A5%E8%8E%B7%E6%89%B9%E4%B8%A4%E6%AC%BE%E3%80%8C%E6%A2%B0%E4%B8%89%E6%B0%B4%E5%85%89%E3%80%8D%EF%BC%8C2026%E3%80%8C%E5%90%88%E8%A7%84%E8%BF%9B%E7%A8%8B%E3%80%8D/', linkText:'医美部落' },
+    { date:'2025-04-25', text:'润百颜·玻玻获NMPA III类医疗器械认证 — 华熙生物水光针品类正式获批，国内首批合规械三水光产品，开启水光行业"合规元年"', cat:'water', link:'https://zhuanlan.zhihu.com/p/1900119787998277678', linkText:'知乎' }
+  ];
+
+  const regBotox = [
+    { date:'2026-04-27', text:'保妥适额纹适应症获NMPA批准 — 成为国内获批适应症最多的肉毒素品牌', cat:'botox', link:'https://www.sohu.com/a/1015174900_313745', linkText:'搜狐新闻' },
+    { date:'2026-04-27', text:'衡力获咬肌肥大（瘦脸）适应症批准 — 国产肉毒适应症版图扩展', cat:'botox', link:'https://m.baidu.com/bh/m/detail/ar_10188626564730955306', linkText:'百度新闻' },
+    { date:'2026-03-27', text:'芮妥欣®重组A型肉毒毒素获NMPA批准 — 全球首款重组肉毒，华东医药里程碑产品', cat:'botox', link:'https://m.163.com/dy/article/KP2MGHUE05568W0A.html', linkText:'网易新闻' },
+    { date:'2026-01-08', text:'爱美客橙毒(HUTOX)获NMPA批准 — 爱美客首款肉毒素产品正式进入市场', cat:'botox', link:'https://zhuanlan.zhihu.com/p/1996539848400581153', linkText:'知乎' },
+    { date:'2025-11-25', text:'衡力获批治疗原发性腋窝多汗症 — 适应症差异化竞争策略', cat:'botox', link:'https://news.qq.com/rain/a/20251205A06P8900', linkText:'腾讯新闻' },
+    { date:'2025-11-05', text:'FDA发出18封警告信打击非法肉毒素网络销售 — 美国监管收紧，合规品牌长期受益', cat:'botox', link:'https://zhuanlan.zhihu.com/p/1976665191237317378', linkText:'知乎' }
+  ];
+
+  const regIndustry = [
+    { date:'2026-07-18', text:'一天之内四地暴雷：天津、北京、杭州、上海同日发布监管动态 — 2026医美监管从"运动式执法"升级为"全天候覆盖"，上海艺星两年被罚9次，行业合规从"事后处罚"转向"事前预防"', cat:'industry', link:'https://new.qq.com/rain/a/20260718A0B4VW00', linkText:'腾讯新闻' },
+    { date:'2026-07-12', text:'北京朝阳区发布首个医疗美容广告专项合规指引 — 明确医美广告发布须取得《医疗广告审查证明》，禁止容貌焦虑营销、功效保证、违规代言及面向未成年人宣传', cat:'industry', link:'https://new.qq.com/rain/a/20260718A0B4VW00', linkText:'腾讯新闻' },
+    { date:'2026-07-01', text:'2026下半年医美严查全面落地 — 五类违规机构及从业人员将被直接清退，无证行医最高罚款50万元并取缔，引发医疗事故者追究刑事责任', cat:'industry', link:'https://www.toutiao.com/article/7659593582013170239', linkText:'头条新闻' },
+    { date:'2026-06-29', text:'敷尔佳、资生堂等企业集中布局三类医疗器械 — 射频二类升三类过渡期收尾，水光针/重组胶原蛋白等品类审批口径持续收紧，三类器械成为医美上游核心准入门槛', cat:'industry', link:'https://ymguancha.com/post/19525.html', linkText:'医美观察' },
+    { date:'2026-06-22', text:'行业周报数据：上半年医美机构同比减少8%，连锁品牌市占率22%→27%，轻医美营收占比突破70% — 行业加速向合规化、连锁化转型', cat:'industry', link:'https://baijiahao.baidu.com/s?id=1868687347904367445', linkText:'百度百家号' },
+    { date:'2026-06-12', text:'618大促推动轻医美线上化加速 — 玻尿酸/肉毒素大规模通过电商平台线上囤券+线下核销，渠道结构深刻变革', cat:'industry', link:'https://finance.sina.com.cn/jjxw/2026-06-12/doc-inicaviy1999111.shtml', linkText:'新浪财经' },
+    { date:'2026-06-11', text:'新氧"讣告式"标题营销引发舆论危机 — 马思纯维权诉讼启动，互联网医美平台合规风险暴露，股价跌至1.86美元', cat:'industry', link:'https://baijiahao.baidu.com/s?id=1868687347904367445', linkText:'百度百家号' },
+    { date:'2026-06-08', text:'国家卫健委等14部委联合发文整治医美乱象 — 重点打击无资质经营、轻医美速成班、虚假营销，继5月818号令后再加码', cat:'industry', link:'https://zhuanlan.zhihu.com/p/2055328064876421121', linkText:'知乎' },
+    { date:'2026-02-10', text:'国家卫健委划定监管红线 — 生活美容机构严禁开展任何轻医美项目，行业合规化进程加速', cat:'industry', link:'https://health.cnr.cn/sygd/20260210/t20260210_527522318.shtml', linkText:'央广网' },
+    { date:'2025-12-30', text:'2025年全年共发放52张医美三类医疗器械注册证 — 审批节奏显著提速，市场竞争进一步加剧', cat:'industry', link:'https://zhuanlan.zhihu.com/p/1989303529274360509', linkText:'知乎' }
+  ];
+
+  main.innerHTML = `
+    ${breadcrumbHTML('tab6')}
+    <div class="page-header">
+      <div class="page-title">📡 监管雷达 — 审批与政策动态</div>
+      <div class="page-subtitle">REGULATORY INTELLIGENCE // NMPA · FDA · 国家卫健委 · 行业政策 <span class="refresh-indicator"><span class="refresh-dot"></span>LIVE</span></div>
+    </div>
+
+    <div class="section-header">
+      <div class="filter-btns" id="regFilterBtns">
+        <button class="filter-btn active" data-cat="all">全部动态</button>
+        <button class="filter-btn" data-cat="ha">🔬 填充剂</button>
+        <button class="filter-btn" data-cat="botox">⚡ 肉毒素</button>
+        <button class="filter-btn" data-cat="water">💧 水光</button>
+        <button class="filter-btn" data-cat="industry">🏛 行业政策</button>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">⚡</span> 肉毒素监管动态</div>
+    <div class="event-list" id="regBotoxList"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">💉</span> 填充剂监管动态</div>
+    <div class="event-list" id="regHAList"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">💧</span> 水光监管动态</div>
+    <div class="event-list" id="regWaterList"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">🏛</span> 行业政策动态</div>
+    <div class="event-list" id="regIndustryList"></div>
+  `;
+
+  function renderEventList(containerId, events) {
+    document.getElementById(containerId).innerHTML = events.map(e => `
+      <div class="event-item" data-cat="${e.cat}">
+        <div class="event-date">${e.date}</div>
+        <div class="event-text"><a href="${e.link}" target="_blank" rel="noopener">${e.text}</a></div>
+        <span class="event-cat ${e.cat}">${
+          e.cat === 'ha' ? '填充剂' : e.cat === 'botox' ? '肉毒素' : e.cat === 'water' ? '水光' : '行业政策'
+        }</span>
+      </div>
+    `).join('');
+  }
+
+  renderEventList('regBotoxList', regBotox);
+  renderEventList('regHAList', regHA);
+  renderEventList('regWaterList', regWater);
+  renderEventList('regIndustryList', regIndustry);
+
+  // Filter buttons
+  document.getElementById('regFilterBtns').addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('#regFilterBtns .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.getAttribute('data-cat');
+
+    const sectionMap = {
+      'regHAList': 'ha',
+      'regBotoxList': 'botox',
+      'regWaterList': 'water',
+      'regIndustryList': 'industry'
+    };
+
+    Object.entries(sectionMap).forEach(([listId, sectionCat]) => {
+      const list = document.getElementById(listId);
+      const sectionTitle = list.previousElementSibling;
+      if (cat === 'all') {
+        list.style.display = '';
+        if (sectionTitle) sectionTitle.style.display = '';
+      } else {
+        const visible = cat === sectionCat;
+        list.style.display = visible ? '' : 'none';
+        if (sectionTitle) sectionTitle.style.display = visible ? '' : 'none';
+      }
+    });
+  });
+}
+
+/* =================================================================
+   PAGE: 文献追踪 (LITERATURE TRACKING) — tab4
+   ================================================================= */
+function renderLiterature(main) {
+  const litHA = [
+    { authors:'Montes JR et al.', journal:'Plastic and Reconstructive Surgery', date:'2025-01-14', title:'VYC-20L HA颞部凹陷填充多中心随机对照试验 — 乔雅登丰颜关键支持文献', pmid:'39808069', cat:'ha' },
+    { authors:'Kaminer MS et al.', journal:'Aesthetic Surgery Journal', date:'2025-07-15', title:'冷交联HA填充剂长期安全性：系统评价与Meta分析', pmid:'40378267', cat:'ha' },
+    { authors:'Jazayeri SM et al.', journal:'Aesthetic Surgery Journal', date:'2025-11-17', title:'⚠ Lunaphil Ultra vs Juvéderm Ultra 4头对头比较研究', pmid:'40966568', cat:'ha' },
+    { authors:'Gerber PA et al.', journal:'Aesthetic Surgery Journal Open Forum', date:'2026-03-11', title:'Belotero上市后长期随访：安全性与患者满意度数据', pmid:'41859206', cat:'ha' },
+    { authors:'Steenen SA et al.', journal:'Journal of the American Academy of Dermatology', date:'2023-04', title:'4种HA唇部增容制剂头对头疗效与安全性比较', pmid:'36370906', cat:'ha' }
+  ];
+
+  const litRegen = [
+    { authors:'Han TY et al.', journal:'Aesthetic Plastic Surgery', date:'2023-10', title:'Gana V vs Sculptra头对头 — PLLA类生物刺激剂疗效对比', pmid:'37626137', cat:'regen' },
+    { authors:'Cao Y et al.', journal:'BBA - Molecular Cell Research', date:'2025-04', title:'PCL微球促进胶原合成的分子机制研究', pmid:'40074205', cat:'regen' },
+    { authors:'Zhang L et al.', journal:'Journal of Cosmetic Dermatology', date:'2025-07', title:'PLLA中面部容积恢复多中心优效RCT', pmid:'40679154', cat:'regen' },
+    { authors:'Tam E et al.', journal:'Aesthetic Plastic Surgery', date:'2025-05', title:'生物刺激剂联合治疗方案系统评价', pmid:'39719485', cat:'regen' },
+    { authors:'Wang S et al.', journal:'Journal of Cosmetic Dermatology', date:'2025-03', title:'新型HA-PLLA-b-PEG复合填充剂的研究进展', pmid:'40114452', cat:'regen' }
+  ];
+
+  const litBotox = [
+    { authors:'Dressler D et al.', journal:'Journal of Neural Transmission', date:'2026-01-31', title:'韩国肉毒产品综述：含Letybo临床证据系统评估', pmid:'41619020', cat:'botox' },
+    { authors:'Camargo CP et al.', journal:'Cochrane Database of Systematic Reviews', date:'2021-07-05', title:'肉毒素A型治疗面部皱纹Cochrane系统评价（金标准证据）', pmid:'34224576', cat:'botox' },
+    { authors:'Neves JR et al.', journal:'Journal of Cosmetic Dermatology', date:'2025-08', title:'Botox联合Skinvive微滴注射眶周皱纹RCT', pmid:'40814769', cat:'botox' },
+    { authors:'Harvie HS et al.', journal:'JAMA', date:'2025-06-03', title:'Botox vs 吊带术治疗急迫性尿失禁头对头RCT', pmid:'40323617', cat:'botox' }
+  ];
+
+  const litCaha = [
+    { authors:'Meçani R et al.', journal:'Aesthetic Plastic Surgery', date:'2025-10', title:'HA+CaHA联合治疗面部年轻化：系统评价与Meta分析', pmid:'40481158', cat:'caha' },
+    { authors:'Gold MH et al.', journal:'Dermatologic Surgery', date:'2025-06', title:'Radiesse/CaHA下颌线塑形多中心RCT — 亚洲人群亚组分析', pmid:'40123891', cat:'caha' }
+  ];
+
+  const litWater = [
+    { authors:'Alexiades M et al.', journal:'Dermatologic Surgery', date:'2023-07', title:'VYC-12L（SkinVive）面颊肤质改善多中心随机对照试验 — SkinVive关键支持文献', pmid:'37163665', cat:'water' },
+    { authors:'Chiu A et al.', journal:'Aesthetic Surgery Journal', date:'2023-10', title:'VYC-12L治疗面颊粗糙与细纹后患者皮肤满意度提升：前瞻性RCT患者报告结局', pmid:'37074002', cat:'water' },
+    { authors:'Yi KH et al.', journal:'Skin Research and Technology', date:'2024-03', title:'水光针定义与分类综述 — HA/PDRN/PLLA等多成分skin booster系统分类', pmid:'38481069', cat:'water' },
+    { authors:'Lee JH et al.', journal:'Journal of Cosmetic Dermatology', date:'2024-02', title:'皮内注射HA填充剂作为肤质增强剂：前瞻性单中心单臂先导研究', pmid:'37705328', cat:'water' },
+    { authors:'Chen L et al.', journal:'Journal of Cosmetic Dermatology', date:'2025-09', title:'非交联HA水光针 vs CaHA微滴注射改善肤质对照研究', pmid:'40712543', cat:'water' }
+  ];
+
+  window.__allLit = [...litHA, ...litRegen, ...litBotox, ...litCaha, ...litWater];
+
+  main.innerHTML = `
+    ${breadcrumbHTML('tab4')}
+    <div class="page-header">
+      <div class="page-title">📚 文献追踪 — PubMed学术文献监控</div>
+      <div class="page-subtitle">LITERATURE INTELLIGENCE // Head-to-Head · RCT · Meta-Analysis · Safety Studies</div>
+    </div>
+
+    <div class="section-header">
+      <div class="filter-btns" id="litFilterBtns">
+        <button class="filter-btn active" data-cat="all">全部文献</button>
+        <button class="filter-btn" data-cat="botox">⚡ 肉毒素</button>
+        <button class="filter-btn" data-cat="ha">🔬 HA填充剂</button>
+        <button class="filter-btn" data-cat="regen">🌱 PCL/PLLA 再生类</button>
+        <button class="filter-btn" data-cat="caha">🦴 CaHA填充类</button>
+        <button class="filter-btn" data-cat="water">💧 水光类</button>
+      </div>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-box" id="litSearch" placeholder="搜索作者、期刊、关键词..." oninput="applyLitFilters()">
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">⚡</span> 肉毒素文献</div>
+    <div class="lit-cards" id="litBotoxCards"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">💉</span> HA填充剂文献</div>
+    <div class="lit-cards" id="litHACards"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">🌱</span> PCL/PLLA 再生类文献</div>
+    <div class="lit-cards" id="litRegenCards"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">🦴</span> CaHA填充类文献</div>
+    <div class="lit-cards" id="litCahaCards"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:12px"><span class="section-title-icon">💧</span> 水光类文献</div>
+    <div class="lit-cards" id="litWaterCards"></div>
+  `;
+
+  function renderLitCards(containerId, papers) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = papers.map(p => `
+      <div class="lit-card" data-cat="${p.cat}" data-search="${(p.authors + ' ' + p.title + ' ' + p.journal + ' ' + p.pmid).toLowerCase()}">
+        <div class="lit-card-authors">${p.authors}</div>
+        <div class="lit-card-journal">${p.journal} · ${p.date}</div>
+        <div class="lit-card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}" target="_blank" rel="noopener">${p.title}</a></div>
+        <div class="lit-card-meta">
+          <span class="lit-card-badge ${p.cat}">${p.cat === 'ha' ? 'HA' : p.cat === 'botox' ? '肉毒' : p.cat === 'caha' ? 'CaHA' : p.cat === 'water' ? '水光' : '再生'}</span>
+          <span class="lit-card-pmid">PMID: ${p.pmid}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  renderLitCards('litBotoxCards', litBotox);
+  renderLitCards('litHACards', litHA);
+  renderLitCards('litRegenCards', litRegen);
+  renderLitCards('litCahaCards', litCaha);
+  renderLitCards('litWaterCards', litWater);
+
+  // Filter
+  document.getElementById('litFilterBtns').addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('#litFilterBtns .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    window.__litCatFilter = btn.getAttribute('data-cat');
+    applyLitFilters();
+  });
+  window.__litCatFilter = 'all';
+}
+
+function applyLitFilters() {
+  const query = (document.getElementById('litSearch')?.value || '').toLowerCase().trim();
+  const cat = window.__litCatFilter || 'all';
+
+  ['litBotoxCards', 'litHACards', 'litRegenCards', 'litCahaCards', 'litWaterCards'].forEach(listId => {
+    const container = document.getElementById(listId);
+    if (!container) return;
+    const cards = container.querySelectorAll('.lit-card');
+    let anyVisible = false;
+    cards.forEach(card => {
+      const cardCat = card.getAttribute('data-cat');
+      const catMatch = cat === 'all' || cardCat === cat;
+      const searchMatch = !query || card.getAttribute('data-search').includes(query);
+      const visible = catMatch && searchMatch;
+      card.style.display = visible ? '' : 'none';
+      if (visible) anyVisible = true;
+    });
+
+    // Show/hide section title
+    const sectionTitle = container.previousElementSibling;
+    if (sectionTitle && sectionTitle.classList.contains('section-title')) {
+      sectionTitle.style.display = anyVisible ? '' : 'none';
+    }
+    // Show/hide section divider
+    const divider = container.previousElementSibling?.previousElementSibling;
+    if (divider && divider.classList.contains('section-divider')) {
+      divider.style.display = anyVisible ? '' : 'none';
+    }
+  });
+}
+
+/* =================================================================
+   PAGE: KOL动态 (KOL DYNAMICS) — tab5
+   ================================================================= */
+function renderKOL(main) {
+  const conferences = [
+    {
+      date:'2026-01-30 — 02-01',
+      name:'IMCAS 2026 · 巴黎',
+      desc:'国际整形美容暨抗衰老医学大会。高德美、Merz密集发布新品临床数据。艾尔建多场卫星会展示保妥适+乔雅登联合治疗方案最新循证数据。',
+      link:'https://www.imcas.com/zh/exhibit/imcas-world-congress-2026', linkText:'IMCAS 官网'
+    },
+    {
+      date:'2026-03-26 — 03-29',
+      name:'AMWC 2026 · 摩纳哥',
+      desc:'世界美容抗衰老大会。再生材料（PLLA/PCL）成为全场热点话题。华东医药伊妍仕受邀做专题报告，高德美塑妍萃中国数据首次在国际学术平台展示。',
+      link:'https://www.amwc-conference.com/', linkText:'AMWC 官网'
+    },
+    {
+      date:'2026-04-15 — 04-17',
+      name:'艾尔建美学峰会 2026 · 上海',
+      desc:'艾尔建美学年度旗舰学术峰会。聚焦全产品线循证医学证据，重点推广保妥适第5适应症（额纹）+ 乔雅登新适应症（颞部凹陷），42篇PubMed文献全景展示。',
+      link:'https://m.life.china.com/2026-05/08/content_574719.html', linkText:'中国生活网'
+    },
+    {
+      date:'2026-10-08 — 10-11',
+      name:'ASDS 2026 · 美国丹佛',
+      desc:'美国皮肤外科学会年会。全球注射美学领域最具影响力的学术平台之一。预计重点议题：重组肉毒素临床进展、再生材料长效安全性数据、HA+CaHA联合方案头对头研究。艾尔建预计展示保妥适+乔雅登最新真实世界数据。',
+      link:'https://www.asds.net/annual-meeting', linkText:'ASDS 官网'
+    },
+    {
+      date:'2026-11-13 — 11-15',
+      name:'中华医学会医学美学与美容学分会2026学术年会 · 广州',
+      desc:'国内医美美学领域最高规格学术会议。聚焦国产替代进程、再生材料中国临床数据、重组胶原蛋白注射剂规范化应用。保妥适与乔雅登的中国适应症拓展循证数据预计在此平台发布。',
+      link:'https://www.cma.org.cn/', linkText:'中华医学会官网'
+    }
+  ];
+
+  main.innerHTML = `
+    ${breadcrumbHTML('tab5')}
+    <div class="page-header">
+      <div class="page-title">🎤 KOL动态 — 学术会议与专家观点监控</div>
+      <div class="page-subtitle">KOL INTELLIGENCE // International Conferences · Expert Opinions · Symposiums</div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:14px">
+      <span class="section-title-icon">📅</span> 国际学术会议追踪
+    </div>
+    <div class="kol-grid" id="confGrid"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title" style="margin-bottom:14px">
+      <span class="section-title-icon">💬</span> KOL专家核心观点
+    </div>
+    <div id="kolQuotes"></div>
+  `;
+
+  document.getElementById('confGrid').innerHTML = conferences.map(c => `
+    <div class="kol-card">
+      <div class="kol-card-date">${c.date}</div>
+      <div class="kol-card-name"><a href="${c.link}" target="_blank" rel="noopener">${c.name}</a></div>
+      <div class="kol-card-desc">${c.desc}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('kolQuotes').innerHTML = `
+    <div class="kol-quote">
+      "The Chinese botulinum toxin market is entering a transformative era with the introduction of recombinant products. We must prepare robust differentiation strategies now — the window for proactive defense is closing."
+      <div class="kol-quote-zh">【译文】中国肉毒素市场正进入变革时代，重组产品的引入将彻底改变竞争格局。我们必须立即准备强有力的差异化策略——主动防御的窗口期正在关闭。</div>
+      <div class="kol-quote-author">— Prof. Dirk Dressler, Journal of Neural Transmission, 2026-04-01</div>
+      <div class="kol-quote-source">${linkTag('https://link.springer.com/article/10.1007/s00702-026-03145-9', '📄 查看原文 — Springer期刊论文')} &nbsp; ${linkTag('https://link.springer.com/content/pdf/10.1007/s00702-026-03145-9.pdf', '📄 PDF全文')}</div>
+    </div>
+    <div class="kol-quote">
+      "Regenerative aesthetics with PLLA/PCL should not be perceived as a threat to HA fillers — it represents a complementary opportunity for intelligent combination therapy approaches that benefit patients."
+      <div class="kol-quote-zh">【译文】PLLA/PCL再生美学不应被视为HA填充剂的威胁——它代表了一种互补机遇，可通过智能联合治疗方案更好地造福患者。</div>
+      <div class="kol-quote-author">— IMCAS 2026 Panel Discussion on Biostimulators</div>
+      <div class="kol-quote-source">${linkTag('https://www.imcas.com/zh/imcas-world-congress-2026/program/session/56511', '📄 IMCAS大会Session详情')} &nbsp; ${linkTag('https://biznews.sohu.com/a/979351694_121198369', '📄 搜狐新闻报道')}</div>
+    </div>
+    <div class="kol-quote">
+      "Juvéderm's clinical evidence foundation — over 42 PubMed-indexed publications — remains unmatched in the HA filler category. This is our strongest differentiator in an increasingly crowded market."
+      <div class="kol-quote-zh">【译文】乔雅登的临床证据基础——超过42篇PubMed收录文献——在HA填充剂品类中依然无人能及。这是我们在日益拥挤的市场中最强大的差异化优势。</div>
+      <div class="kol-quote-author">— Allergan Medical Institute, 2026 Shanghai Summit</div>
+      <div class="kol-quote-source">${linkTag('https://www.xinhuanet.com/health/20260527/c547570dc1cb45c8888f82dab5eb70b1/c.html', '📄 新华网官方报道')} &nbsp; ${linkTag('https://life.china.com/2026-05/20/content_579467.html', '📄 中国生活网详细报道')}</div>
+    </div>
+    <div class="kol-quote">
+      "Head-to-head clinical data is becoming the new currency of competition in aesthetic medicine. Brands without rigorous RCT data will increasingly struggle to maintain physician confidence."
+      <div class="kol-quote-zh">【译文】头对头临床数据正成为医美领域竞争的新通货。缺乏严格RCT数据的品牌将越来越难以维持医生信心。</div>
+      <div class="kol-quote-author">— AMWC 2026 Expert Consensus Panel</div>
+      <div class="kol-quote-source">${linkTag('https://www.galderma.com/news/amwc-2026-galderma', '📄 AMWC 2026 Galderma展示数据')} &nbsp; ${linkTag('https://www.amwc-conference.com/', '📄 AMWC大会官网')}</div>
+    </div>
+  `;
+}
+
+/* =================================================================
+   PAGE: 竞品矩阵 (COMPETITOR MATRIX) — tab0
+   ================================================================= */
+function renderMatrix(main) {
+  // ── Category 1: HA 填充剂 ──
+  const haFillerData = [
+    // ── 华熙生物（填充剂线）──
+    { name:'润致·斐然', en:'Revitacare Feiran', company:'华熙生物 Bloomage', origin:'中国', type:'HA填充剂（唇部专用）', ingredient:'交联透明质酸 (DPC动态微网仿生交联) + 利多卡因', approval:'2023年（唇部填充）', process:'DPC动态微网仿生交联技术', xlink:'中交联', particle:'小分子均质', advantage:'润致高端专研"然"系列，唇部精细化填充，DPC技术柔顺灵动；含麻减痛', duration:'6-12个月', lidocaine:'是', link:'https://www.bloomagebiotech.com/' },
+    { name:'润致·耀然', en:'Revitacare Yaoran', company:'华熙生物 Bloomage', origin:'中国', type:'HA填充剂（中面部/轮廓）', ingredient:'交联透明质酸 (DPC动态微网仿生交联) + 利多卡因', approval:'2024年（中面部/轮廓塑形提升）', process:'DPC动态微网仿生交联技术', xlink:'中高交联', particle:'中大分子', advantage:'润致高端专研"然"系列，中面部轮廓塑形与提升，DPC技术抗位移；含麻减痛', duration:'12-18个月', lidocaine:'是', link:'https://www.bloomagebiotech.com/' },
+    { name:'润致系列(Natural/2/3/5号)', en:'Revitacare Natural/No.2/3/5', company:'华熙生物 Bloomage', origin:'中国', type:'HA填充剂（分层抗衰多型号）', ingredient:'交联透明质酸 (HEC3.0-3D分区梯度交联)', approval:'2019年natural(国械注准20193130257)；2号/3号/5号2020年陆续获批', process:'HEC3.0-3D分区高效梯度交联 + BioBT2.0等渗凝胶', xlink:'多型号交联', particle:'小/中/大分子(5型号)', advantage:'润致分层抗衰矩阵：1号(粉/浅层细纹)、2号(绿/浅层褶皱)、3号(蓝/深层容量)、5号(紫/骨性塑形含麻16%)、Natural(红/单相唇眼周)；覆盖全面部分层场景', duration:'8-18个月', lidocaine:'部分含(5号含16%利多卡因)', link:'https://www.bloomagebiotech.com/' },
+    // ── 昊海生科（四代矩阵）──
+    { name:'海薇', en:'Hya-Dermis', company:'昊海生科', origin:'中国', type:'HA填充剂', ingredient:'交联透明质酸', approval:'2013年（国械注准20133460823，中重度鼻唇沟皱纹）', process:'单相交联工艺', xlink:'中交联', particle:'中颗粒', advantage:'昊海生科第一代玻尿酸，主打塑形；国产早期持证填充剂代表', duration:'6-9个月', lidocaine:'否', link:'https://www.3healthcare.com/' },
+    { name:'海魅', en:'Hymeres', company:'昊海生科', origin:'中国', type:'HA填充剂（线性无颗粒）', ingredient:'交联透明质酸 (线性无颗粒化交联)', approval:'2020年（国械注准20203130314，中重度鼻唇沟皱纹）', process:'线性无颗粒化交联工艺', xlink:'高内聚', particle:'无颗粒均相', advantage:'昊海生科第三代高端线，无颗粒化、高内聚、回弹不假面；国产高端填充代表', duration:'12-18个月', lidocaine:'否', link:'https://www.3healthcare.com/' },
+    { name:'海魅月白', en:'Hymeres Lunar White', company:'昊海生科 (上海其胜生物)', origin:'中国', type:'HA填充剂（氨基酸交联/玻氨酸）', ingredient:'赖氨酸交联透明质酸 (氨基酸交联，无BDDE化学交联剂)', approval:'2024年（国械注准20243131239）', process:'赖氨酸/氨基酸交联技术 (专利ZL201410007366.1)', xlink:'氨基酸交联', particle:'绿盒S(小分子)/黄盒H(大分子)', advantage:'昊海生科第四代"玻氨酸"，全球首创赖氨酸交联，零化学交联剂残留；代谢产物为人体氨基酸，可酶解可逆；420支案例未见明显不良反应', duration:'约12个月', lidocaine:'否', link:'https://www.3healthcare.com/' },
+    { name:'姣兰', en:'Janlane', company:'昊海生科', origin:'中国', type:'HA填充剂', ingredient:'注射用修饰透明质酸钠凝胶', approval:'2016年（国械注准20163131492，中重度鼻唇沟；2023年2月新增唇部适应症）', process:'LTDT低温二次交联', xlink:'中交联', particle:'中颗粒', advantage:'昊海生科第二代，主打填充；2023年新增唇部适应症，4D网络结构柔软灵动', duration:'6-12个月', lidocaine:'否', link:'https://www.3healthcare.com/' },
+    { name:'姣兰Lips', en:'Janlane Lips (Oral)', company:'昊海生科', origin:'中国', type:'HA填充剂（唇部专用）', ingredient:'注射用交联透明质酸钠凝胶 (LTDT低温二次交联)', approval:'2023年2月（国械注准20163131492250701，唇红体/唇红缘填充；国产首款唇部++鼻唇沟双适应症）', process:'LTDT低温二次交联 + 高动力粘度', xlink:'中交联', particle:'小分子(1.1mL)', advantage:'姣兰VOA矩阵O区款，国产首款获NMPA唇部+鼻唇沟双适应症玻尿酸；高动力粘度随表情自然形变，抗移位；含麻减痛', duration:'6-10个月', lidocaine:'是', link:'https://www.3healthcare.com/' },
+    // ── 爱美客（HA矩阵）──
+    { name:'爱芙莱', en:'Ifresh', company:'爱美客', origin:'中国', type:'HA填充剂（单相含麻）', ingredient:'修饰透明质酸钠 + 0.3%盐酸利多卡因', approval:'2015年（国械注准20153130674，中重度鼻唇沟）', process:'微生物发酵HA + 舒缓减痛配方', xlink:'中交联', particle:'中分子', advantage:'爱美客含麻玻尿酸，注射舒适；性价比路线，覆盖泪沟/卧蚕/浅层微调', duration:'6-12个月', lidocaine:'是（0.3%）', link:'https://www.imeik.com/' },
+    { name:'逸美一加一', en:'EME 1+1', company:'爱美客', origin:'中国', type:'复合填充剂（HA+HPMC）', ingredient:'医用透明质酸钠-羟丙基甲基纤维素凝胶', approval:'2016年（国械注准20163461809，中重度额纹/鼻唇沟）', process:'固液渐变互穿交联技术', xlink:'—（复合）', particle:'大红(大)/小金(小)双型号', advantage:'爱美客逸美升级款，HA+HPMC复合，维持1-2年', duration:'1-2年', lidocaine:'否', link:'https://www.imeik.com/' },
+    // ── 其他（进口头部）──
+    { name:'瑞蓝丽瑅', en:'Restylane Lyft', company:'高德美 Galderma', origin:'瑞典', type:'HA填充剂', ingredient:'交联透明质酸 (NASHA技术)', approval:'2015年（中面部容积填充）', process:'NASHA非动物源稳定性透明质酸', xlink:'高交联', particle:'大颗粒', advantage:'经典NASHA技术，塑形力强，高德美三品类协同', duration:'12-18个月', lidocaine:'否（部分含利多卡因版本）', link:'https://www.galdermaaesthetics.com.cn/restylane' },
+    { name:'瑞蓝丰采', en:'Restylane Volyme', company:'高德美 Galderma', origin:'瑞典', type:'HA填充剂', ingredient:'交联透明质酸 (OBT动态交联)', approval:'2023年1月（中面部容量缺失/轮廓缺陷）', process:'OBT优异平衡技术', xlink:'中高交联', particle:'中等颗粒', advantage:'OBT动态交联技术，随面部表情自然塑形，含利多卡因', duration:'18个月', lidocaine:'是', link:'https://www.galdermaaesthetics.com.cn/restylane' },
+    { name:'瑞蓝2号', en:'Restylane', company:'高德美 Galderma', origin:'瑞典', type:'HA填充剂', ingredient:'交联透明质酸 (NASHA技术)', approval:'2008年（中/重度皱纹填充）', process:'NASHA非动物源稳定性透明质酸', xlink:'中等交联', particle:'中颗粒', advantage:'中国市场最老牌HA填充剂之一，品牌认知度极高', duration:'6-12个月', lidocaine:'否（部分含利多卡因版本）', link:'https://www.galdermaaesthetics.com.cn/restylane' },
+    { name:'瑞蓝定采', en:'Restylane Defyne', company:'高德美 Galderma', origin:'瑞典', type:'HA填充剂', ingredient:'交联透明质酸 (OBT动态交联)', approval:'2020年（中面部容积填充）', process:'OBT优异平衡技术', xlink:'中高交联', particle:'中等颗粒', advantage:'OBT技术，动态表情下自然效果', duration:'12-18个月', lidocaine:'否（部分含利多卡因版本）', link:'https://www.galdermaaesthetics.com.cn/restylane' },
+    { name:'保柔缇', en:'Belotero Balance/Volume/Intense', company:'Merz 麦施美学', origin:'德国', type:'HA填充剂（CPM仿生）', ingredient:'交联透明质酸 (CPM-HA仿生技术)', approval:'2025年11月（中重度面部皱纹/填充）', process:'CPM凝聚多糖基质交联', xlink:'多种交联程度', particle:'多种粒径', advantage:'CPM-HA仿生交联技术，Merz+思奥美+芮得怡三品类协同', duration:'6-12个月', lidocaine:'否', link:'https://www.belotero.com/' },
+    { name:'艾莉薇', en:'Elravie (HA)', company:'Humedix / 华东宁波', origin:'韩国', type:'HA填充剂', ingredient:'交联透明质酸 (HICE技术)', approval:'2019年（面部皱纹/填充）', process:'HICE高浓度均衡交联技术', xlink:'高交联', particle:'大颗粒', advantage:'韩国高端HA品牌，高浓度均衡交联技术', duration:'9-12个月', lidocaine:'否', link:'https://www.humedix.com/' },
+    { name:'伊婉', en:'YVOIRE (HA)', company:'LG化学', origin:'韩国', type:'HA填充剂', ingredient:'交联透明质酸 (HICE技术)', approval:'2013年（面部皱纹/填充）', process:'HICE高浓度交联', xlink:'中高交联', particle:'中等颗粒', advantage:'韩国品牌，中国市场早期进入者，份额逐年下降', duration:'6-12个月', lidocaine:'否', link:'https://www.lgchem.com/' },
+    { name:'公主玻尿酸', en:'Princess (HA)', company:'Croma-Pharma', origin:'奥地利', type:'HA填充剂', ingredient:'交联透明质酸 (SMART技术)', approval:'2020年（面部填充）', process:'SMART超纯交联技术', xlink:'中等交联', particle:'中等颗粒', advantage:'欧洲品牌，SMART超纯交联工艺，市场影响力有限', duration:'6-9个月', lidocaine:'否', link:'https://www.croma.at/' },
+    { name:'莫娜丽莎', en:'MONALISA Lidocaine Filler', company:'康哲药业 (康哲美丽 CMS Skinhealth)', origin:'韩国', type:'HA填充剂', ingredient:'交联透明质酸 (HY-BRID技术) + 0.3%利多卡因', approval:'2023年（国械注进20233130068，中重度鼻唇沟皱纹）', process:'HY-BRID交联技术（低化学残留）', xlink:'中高交联', particle:'大颗粒', advantage:'康哲药业医美矩阵核心填充剂，HA 24mg/mL+利多卡因0.3%，BDDE残留<0.04PPM，累计销量超15万支', duration:'6-12个月', lidocaine:'是（0.3%）', link:'http://www.9191mr.com/cailiao/details?id=1995' },
+    { name:'思伊美', en:'Sofiderm (HA)', company:'杭州科腾生物', origin:'中国', type:'HA填充剂（双相交联）', ingredient:'交联透明质酸 (MCLPE技术) + 未交联HA（20mg/mL）', approval:'2021年（国械注准20213130191，中重度鼻唇沟皱纹）', process:'MCLPE多相混合衔接交联技术', xlink:'双相交联', particle:'多粒径(300-2000μm)', advantage:'国产中端HA代表，5款型号覆盖泪沟至塑体全场景，出口30+国超百万支', duration:'6-12个月', lidocaine:'否', link:'https://www.medbelove.com/' },
+    { name:'法思丽', en:'FACILLE', company:'科妍生物 (中国台湾)', origin:'中国台湾', type:'HA填充剂（双相大分子）', ingredient:'交联透明质酸钠凝胶 (CHAP™交联)', approval:'2014年（国械注准20163460091，面部塑形/鼻唇沟皱纹）', process:'CHAP™交联透明质酸平台专利', xlink:'高交联', particle:'大颗粒', advantage:'台湾科妍生产，双相大分子支撑力强、塑形立体，行销30余国', duration:'8-12个月', lidocaine:'否', link:'https://www.facille.com.cn/' },
+    { name:'芙媄登', en:'Formaderm', company:'和康生物 (中国台湾)', origin:'中国台湾', type:'HA填充剂（双相中分子）', ingredient:'交联透明质酸钠 (ECHA均衡交联)', approval:'2016年（国械注许20163130035，真皮层中层填充）', process:'ECHA均衡交联技术', xlink:'中交联', particle:'中分子均质', advantage:'台湾和康生物出品，FDA/CE/CFDA多认证；柔顺型、低移位', duration:'8-12个月', lidocaine:'否', link:'https://www.medbelove.com/' },
+    { name:'欣菲聆', en:'Singfiller', company:'杭州协合医疗', origin:'中国', type:'HA填充剂（双相中大分子）', ingredient:'交联透明质酸钠 (SingLink®交联)', approval:'2015年（国械注准20153131332，中重度鼻唇沟）', process:'SingLink®专利交联技术', xlink:'中高交联', particle:'中大分子(粒径均一)', advantage:'协合医疗中大分子玻尿酸，高粘弹性宜轮廓固定塑形；远销30+国', duration:'6-12个月', lidocaine:'否', link:'https://www.pharmnews.com/' },
+    { name:'婕尔', en:'Giselleligne', company:'大熊制药 (韩国)/北京大熊', origin:'韩国', type:'HA填充剂（单双相2合1）', ingredient:'交联透明质酸钠 (R²Square混合技术)', approval:'2019年（国械注进20193130095，中重度鼻唇沟；Contour含麻版2022获批）', process:'R²Square混合技术(单双相合一)', xlink:'中交联', particle:'单双相混合', advantage:'大熊制药创新R²Square技术，刚柔并济；MAX大分子含0.3%利多卡因', duration:'9-12个月', lidocaine:'部分含(Contour/MAX含0.3%)', link:'https://www.daewoong.co.kr/' },
+    { name:'碧萃诗', en:'Beatrice', company:'常州药物研究所', origin:'中国', type:'HA填充剂（反相单相）', ingredient:'交联透明质酸钠 (反相交联)', approval:'2018年（国械注准20183130109，中重度鼻唇沟；2022更新获批）', process:'反相交联 + 蛋白除杂 + 均质凝胶', xlink:'单相中交联', particle:'均质无颗粒', advantage:'常州药物所(40年HA大厂)出品，反相单相交联，交联剂残留<0.5ppm', duration:'6-12个月', lidocaine:'否', link:'https://www.beatrice1984.com/' }
+  ];
+
+  // ── Category 2: PCL/PLLA/PMMA 再生填充剂 ──
+  const pclpllaData = [
+    // ── PCL 少女针 ──
+    { name:'伊妍仕', en:'Ellansé (PCL)', company:'华东医药 (欣可丽美学)', origin:'荷兰', type:'PCL生物刺激剂（少女针）', ingredient:'30%聚己内酯微球(PCL) + 70%CMC凝胶', approval:'2021年（中面部容积/轮廓塑形）；2026年S型额部变更注册获NMPA受理', process:'STAT专利微球技术', xlink:'—（非交联）', particle:'S/M/L/E四型微球(1-4年长效)', advantage:'国内首款合规少女针，经典M型覆盖500+机构，上市首年破6亿、2023年超10亿；S/M/L/E四型分层；华东医药全品类医美战略核心', duration:'1-4年（长效刺激胶原）', lidocaine:'否', link:'https://baike.baidu.com/item/Ellansé' },
+    { name:'塑妍真', en:'Suyanzhen (PCL)', company:'山东采采医疗 (谷雨春生物)', origin:'中国', type:'PCL生物刺激剂（少女针）', ingredient:'30%聚己内酯微球(PCL) + 70%CMC凝胶', approval:'2024年8月（国械注准20243131626，鼻唇沟）；2025年11月新增下颌适应症（国械注准20253132404）', process:'Polymer-Drop®专利 + Micro-Nets™结构 + 膜乳化法(粒径20-50μm)', xlink:'—（非交联）', particle:'PCL微球(20-50μm,表面微波纹)', advantage:'国内首款国产PCL少女针，国内第2款PCL少女针；首创下颌适应症PCL产品，0.5ml/1.0ml双规格；谷雨春PLGA/PCL/PLA/PLLA材料平台', duration:'1-2年', lidocaine:'否', link:'https://m.poushuan.com/news/939929.html' },
+    // ── PLLA 童颜针 ──
+    { name:'塑妍萃', en:'Sculptra (PLLA)', company:'高德美 Galderma', origin:'法国', type:'PLLA生物刺激剂', ingredient:'聚左旋乳酸 (PLLA) + CMC + 甘露醇', approval:'2025年9月（面部容积缺失/皱纹）', process:'PLLA微粒冻干粉技术', xlink:'—（非交联）', particle:'PLLA微粒', advantage:'PLLA国际标杆产品，高德美三品类协同，全球学术资源强大', duration:'18-24个月', lidocaine:'否', link:'https://www.galdermaaesthetics.com.cn/sculptra' },
+    { name:'艾维岚', en:'Löviselle (PLLA)', company:'长春圣博玛', origin:'中国', type:'PLLA生物刺激剂（童颜针）', ingredient:'聚左旋乳酸 (PLLA) + CMC + 甘露醇', approval:'2021年4月（国械注准20213130276）—国内首款PLLA童颜针', process:'MEC-SPACE专利技术，Tri-H专利控制2年匀速降解', xlink:'—（非交联）', particle:'PLLA微球', advantage:'国内首款NMPA三类证PLLA童颜针，中科院长春应化所技术背景，植物发酵原料可降解为CO₂和水', duration:'约2年（3次疗程维持30个月）', lidocaine:'否', link:'http://loviselle.com/' },
+    { name:'濡白天使', en:'Angel Gel (PLLA+HA)', company:'爱美客', origin:'中国', type:'PLLA+HA复合填充剂', ingredient:'PLLA微球+交联HA', approval:'2021年（面部容积填充）', process:'PLLA微粒分散于HA载体', xlink:'HA载体交联', particle:'PLLA微粒+HA凝胶', advantage:'国产替代领军者，PLLA+HA双重机制，渠道下沉+橙毒协同', duration:'12-18个月', lidocaine:'否', link:'https://www.imeik.com/' },
+    { name:'艾塑菲', en:'AestheFill (PDLLA)', company:'REGEN Biotech / 爱美客', origin:'韩国', type:'PDLLA生物刺激剂（童颜针）', ingredient:'聚双旋乳酸 (PDLLA)', approval:'2024年1月（鼻唇沟皱纹）—首款进口童颜针', process:'PDLLA多孔微球技术', xlink:'—（非交联）', particle:'PDLLA微球', advantage:'首款进口童颜针，爱美客2025年收购REGEN 85%股权，纳入臻爱灵塑系列', duration:'18-24个月', lidocaine:'否', link:'https://www.regenbio.co.kr/' },
+    { name:'普丽妍', en:'Puliyan (PLLA)', company:'普丽妍(南京)医疗科技', origin:'中国', type:'PLLA生物刺激剂（童颜针）', ingredient:'聚左旋乳酸微球(PLLA) + CMC + 甘露醇', approval:'2024年11月21日（国械注准20243132279，鼻唇沟）—国内第4款国产童颜针', process:'国内首款全流程无菌灌装工艺（非辐照灭菌）', xlink:'—（非交联）', particle:'PLLA微球(光滑均一)', advantage:'国内首款全流程无菌灌装童颜针，内毒素<0.125EU/瓶远低于国标0.5EU/ml；特性黏度3-4dl/g高于辐照灭菌竞品；2025年8月完成5000万美元C轮融资', duration:'18-24个月', lidocaine:'否', link:'https://www.xhby.net/content/s6891f985e4b0310b14ad3c3c.html' },
+    // ── 复合长效/永久填充剂 ──
+    { name:'宝尼达', en:'Bonita', company:'爱美客', origin:'中国', type:'复合长效填充剂（HA+PVA微球）', ingredient:'80%复合透明质酸钠 + 20% PVA聚乙烯醇微球 + HPMC', approval:'2012年（国械注准20163132497，真皮深层至皮下浅层，中重度额纹/鼻唇沟）', process:'固液渐变互穿交联 + 微球悬浮', xlink:'—（含微球）', particle:'PVA微球', advantage:'爱美客长效复合填充，3次增量注射可维持5-10年；PVA微球刺激胶原再生，骨性支撑路线', duration:'5-10年（长效）', lidocaine:'否', link:'https://www.imeik.com/' },
+    { name:'爱贝芙', en:'ArteColl (PMMA)', company:'荷兰汉福生物科技', origin:'荷兰', type:'PMMA永久性填充剂', ingredient:'80%牛胶原蛋白溶液 + 20% PMMA聚甲基丙烯酸甲酯微球 + 0.3%利多卡因', approval:'2004年首批（国械注进20163132859，真皮深层/鼻唇沟/隆鼻）；2021年续签至2026.10.25', process:'PMMA微球+牛胶原载体复合', xlink:'—（永久微球）', particle:'PMMA微球(不可吸收)', advantage:'国内首批永久性填充剂；PMMA微球不可吸收、刺激自体胶原包裹；理论维持5-10年以上；仅限授权机构与认证医生操作', duration:'5-10年以上（永久）', lidocaine:'是（0.3%）', link:'http://m.mp17.com/zx/ym_30254.html' },
+    { name:'贝丽菲尔', en:'Bellafill (PMMA)', company:'圣诺华 Suneva Medical', origin:'美国', type:'PMMA永久性填充剂', ingredient:'80%牛胶原蛋白溶液 + 20% PMMA微球 + 0.3%利多卡因', approval:'2024年1月（国械注进20243130041，真皮深层/鼻唇沟）', process:'PMMA微球+牛胶原载体复合（与爱贝芙成分一致）', xlink:'—（永久微球）', particle:'PMMA微球(不可吸收)', advantage:'FDA 2006年批准的永久性填充剂，成分与爱贝芙一致；2024年NMPA获批引入中国，新增竞争格局', duration:'5年以上（永久）', lidocaine:'是（0.3%）', link:'https://www.weibo.com/3279120854/OhSconf6b' },
+    // ── PLLA+HA 新势力（放最后）──
+    { name:'臻好逑', en:'Zhenhaoqiu (PLLA+HA)', company:'玮沐医疗', origin:'中国', type:'PLLA+HA复合再生填充剂（童颜针）', ingredient:'PLLA微球+交联透明质酸', approval:'2026年3月（NMPA III类注册证），6月首批量产交付', process:'PLLA+HA复配技术', xlink:'HA载体交联', particle:'PLLA微球+HA凝胶', advantage:'第14款获批童颜针，PLLA+HA复合路线，从拿证到交付仅3个月，国产童颜针新势力', duration:'12-18个月', lidocaine:'否', link:'https://www.sohu.com/a/1040512332_122369511' }
+  ];
+
+  // ── Category 3: CaHA 填充剂 ──
+  const cahaData = [
+    { name:'HArmonyCa', en:'HArmonyCa™', company:'艾尔建美学 Allergan', origin:'美国', type:'HA+CaHA复合再生填充剂', ingredient:'交联透明质酸 (HA 20mg/mL) + 羟基磷灰石钙微球 (CaHA 55.7%) + 利多卡因 (0.3%)', approval:'海外已上市（欧洲CE/以色列/巴西/香港）；国内临床试验推进中，尚未获NMPA批准', process:'交联HA凝胶载体 + 嵌入式高光滑实心CaHA微球', xlink:'HA载体交联', particle:'CaHA微球(25-45μm,高光滑实心)', advantage:'复合结构性再生技术，即时塑形+长效再生双效融合；HA载体推注顺滑、组织贴合度高；高光滑实心微球刺激性低、胶原再生均匀、体积回落平缓；海外获批适应症覆盖多部位年轻化（鼻唇沟/下巴/颌部/脸颊/颞区/泪沟）', duration:'18-24个月', lidocaine:'是（0.3%）', link:'https://mp.weixin.qq.com/s/Y-oOn54hOm1JoHzHYtpcWA' },
+    { name:'优法兰', en:'Aphranel (CaHA)', company:'摩漾生物', origin:'中国', type:'CaHA生物刺激剂', ingredient:'羟基磷灰石钙 (CaHA) 30% + CMC凝胶 70%', approval:'2025年2月17日（国械注准20253130390）—中重度鼻唇沟矫正', process:'ACD-MT™树莓状通孔微球 + PCD-ETT™物理交联凝胶', xlink:'—（非交联）', particle:'CaHA微球(30-35μm)', advantage:'国内首款NMPA三类证CaHA面部填充剂，树莓状通孔微球(孔隙率74%)，CMC凝胶载体注射后1-2个月有正常体积回落，功能偏向骨性支撑', duration:'12-15个月', lidocaine:'否', link:'https://aphranel.com/' },
+    { name:'芮得怡', en:'Radiesse (CaHA)', company:'Merz 麦施美学', origin:'美国', type:'CaHA生物刺激剂', ingredient:'羟基磷灰石钙 (CaHA) 30% + CMC凝胶 70%', approval:'2025年3月7日（国械注进20253130124）—中重度鼻唇沟矫正', process:'CaHA微晶球体+CMC凝胶载体', xlink:'—（非交联）', particle:'CaHA微球(25-45μm)', advantage:'全球首款FDA批准CaHA填充剂(2006)，全球销量超1500万支，CMC凝胶载体注射后1-2个月有正常体积回落，功能偏向骨性支撑', duration:'18个月以上', lidocaine:'否（国内1.5mL/支）', link:'https://www.radiesse.com/' },
+    { name:'菲林普利', en:'Fillin (CaHA)', company:'四川拜阿蒙 / 成都睿合医药', origin:'中国', type:'CaHA生物刺激剂', ingredient:'100%纯化多孔羟基磷灰石钙 (CaHA)', approval:'2017年获批（国械注准20173130346）—含软组织修复适应症', process:'多孔CaHA微球技术', xlink:'—（非交联）', particle:'CaHA多孔微球', advantage:'国内较早上市的CaHA再生材料(国械注准20173130346)，三型分层：S型50mg/20-25μm(真皮深层-泪沟/黑眼圈/颈纹/中胚层水光/6-12月)、M型100mg/25-40μm(皮下-骨膜上/额头颞区苹果肌鼻唇沟/12-18月)、L型250mg/40-71μm(深层骨膜/眉弓鼻背鼻基底下巴下颌/18-24月)；100%多孔CaHA微球可完全降解为钙磷离子；牵头制定CaHA注射团体标准', duration:'6-24个月(按型)', lidocaine:'否', spec:'S50mg/M100mg/L250mg', link:'http://www.huanqiuyiliao.com.cn/' }
+  ];
+
+  const botoxMatrixData = [
+    { name:'衡力', en:'BTXA (Botulinum Toxin Type A)', company:'兰州生物', origin:'中国', type:'A型肉毒毒素', ingredient:'Botulinum Toxin Type A (BTXA)', excipient:'猪明胶（明胶蛋白复合物）', approval:'2026年4月（咬肌肥大）；2025年11月（多汗症）；2012年（眉间纹）', spec:'50U/100U', diffusion:'约3cm（较高）', conversion:'1U≈1U（保妥适基准）', advantage:'性价比突出，基层渗透深，市占率约17%；猪明胶载体过敏风险略高', duration:'3-4个月', update:'咬肌肥大+多汗症获批，适应症差异化竞争', link:'https://m.baidu.com/bh/m/detail/ar_10188626564730955306' },
+    { name:'思奥美', en:'XEOMIN (IncobotulinumtoxinA)', company:'Merz 麦施美学', origin:'德国', type:'A型肉毒毒素（纯化型）', ingredient:'IncobotulinumtoxinA（150kD裸毒素）', excipient:'无赋形剂（无复合蛋白，纯净裸毒素）', approval:'2024年2月NMPA获批；2025年11月上市（眉间纹）', spec:'50U/100U', diffusion:'约1-2cm（中等偏小）', conversion:'1U≈1U（与保妥适等价）', advantage:'纯化肉毒无复合蛋白，低免疫原性，可室温保存3年；460+篇文献/2000万例，单药使用未见耐药失败', duration:'3-4个月', update:'Merz三品类之一，"纯净肉毒"差异化竞争（原海外俗称"西马"）', link:'https://www.xeominaesthetic.com/' },
+    { name:'乐提葆', en:'Letybo (LetibotulinumtoxinA)', company:'Hugel / 四环医药', origin:'韩国', type:'A型肉毒毒素', ingredient:'LetibotulinumtoxinA', excipient:'人血白蛋白（HSA）', approval:'2020年10月（眉间纹）', spec:'50U/100U', diffusion:'约2cm', conversion:'1U≈1U（保妥适基准）', advantage:'品牌年轻化策略，社交媒体营销强，2025年销量破120万瓶，市占率约22%', duration:'3-4个月', update:'代理续约至2030，品牌年轻化策略持续推进', link:'https://baike.baidu.com/item/乐提葆/67799961' },
+    { name:'吉适', en:'Dysport (AbobotulinumtoxinA)', company:'高德美 Galderma', origin:'英国/法国', type:'A型肉毒毒素', ingredient:'AbobotulinumtoxinA (AboBoNT-A)', excipient:'人血白蛋白（HSA）', approval:'2020年6月（眉间纹）', spec:'300U/瓶（Speywood单位）', diffusion:'约3-4cm（较高）', conversion:'1U≈2.5-3U（Speywood单位，非1:1）', advantage:'国际老牌肉毒，高德美HA+再生+肉毒三品类协同，市占率约6%', duration:'3-4个月', update:'三品类协同效应强，机构端议价能力高', link:'https://www.galdermaaesthetics.com.cn/dysport' },
+    { name:'达希斐', en:'Daxxify (DaxibotulinumtoxinA)', company:'Revance / 复星医药', origin:'美国', type:'A型肉毒毒素（长效）', ingredient:'DaxibotulinumtoxinA (RTP004肽交换技术)', excipient:'RTP004肽（无HSA，肽交换结合）', approval:'2024年9月（眉间纹）', spec:'100U/瓶', diffusion:'约1.5cm', conversion:'单位体系独立，不可与保妥适直接换算', advantage:'肽交换技术，维持时间6-9月，长效差异化，市占率约5%', duration:'6-9个月', update:'复星医药中国独家代理，长效差异化定位', link:'https://www.daxxify.com/' },
+    { name:'橙毒', en:'HUTOX (Botulinum Toxin Type A)', company:'爱美客 / Huons BioPharma', origin:'韩国', type:'A型肉毒毒素', ingredient:'Botulinum Toxin Type A (HUTOX)', excipient:'人血白蛋白（HSA）', approval:'2026年1月（眉间纹）', spec:'100U/瓶', diffusion:'约2cm', conversion:'1U≈1U（保妥适基准）', advantage:'依托爱美客HA渠道快速铺开，性价比路线，市占率约5%', duration:'3-4个月', update:'爱美客首款肉毒，依托HA渠道快速渗透终端', link:'https://zhuanlan.zhihu.com/p/1996539848400581153' },
+    { name:'芮妥欣', en:'Retoxin (RebotulinumtoxinA)', company:'华东医药 / 誉颜制药', origin:'中国', type:'重组A型肉毒毒素', ingredient:'重组A型肉毒毒素 (rBoNT-A)', excipient:'无动物源蛋白（重组技术，低免疫原性）', approval:'2026年3月27日（眉间纹，国药准字S20260019）', spec:'150U/瓶', diffusion:'低弥散度', conversion:'150U/瓶，单位体系独立', advantage:'全球首款获批重组肉毒，理论无限产能，低免疫原性', duration:'3-6个月', update:'全球首款重组肉毒(2026-03-27获批)', link:'https://news.qq.com/rain/a/20260327A0759200' }
+  ];
+
+  main.innerHTML = `
+    ${breadcrumbHTML('tab0')}
+    <div class="page-header">
+      <div class="page-title">🗂 竞品矩阵 — 全维度竞品对比分析</div>
+      <div class="page-subtitle">COMPETITOR MATRIX // HA Fillers · PCL/PLLA Biostimulators · CaHA Fillers · Botulinum Toxin</div>
+    </div>
+
+    <div class="matrix-section">
+      <div class="section-title" style="margin-bottom:14px">
+        <span class="section-title-icon">⚡</span> 肉毒素竞品矩阵
+      </div>
+      <div class="matrix-wrap" style="overflow-x:auto">
+        <table class="matrix-table" id="botoxMatrixTable" style="min-width:1500px">
+          <thead>
+            <tr>
+              <th style="width:100px">产品名称</th>
+              <th style="width:130px">产品英文名</th>
+              <th style="width:130px">所属公司</th>
+              <th style="width:60px">产地</th>
+              <th style="width:100px">产品类型</th>
+              <th style="width:120px">有效成分</th>
+              <th style="width:110px">附形剂</th>
+              <th style="width:120px">获批时间(适应症)</th>
+              <th style="width:80px">核心规格</th>
+              <th style="width:80px">弥散度</th>
+              <th style="width:110px">单位换算参考</th>
+              <th style="width:150px">核心特点及优势</th>
+              <th style="width:80px">维持时间</th>
+              <th style="width:140px">最新动态</th>
+            </tr>
+          </thead>
+          <tbody id="botoxMatrixBody"></tbody>
+        </table>
+        <div style="margin-top:8px;padding:8px 12px;background:var(--warning-dim);border-left:3px solid var(--warning);font-size:11px;color:var(--warning);line-height:1.5">
+          ⚠️ <b>单位换算声明</b>：各肉毒品牌单位体系不同，<b>不可直接等量换算</b>，本表换算关系仅作临床参考。吉适采用 Speywood 单位(s.U)，与保妥适/衡力/乐提葆/思奥美的 U 非 1:1 关系；达希斐与芮妥欣单位体系独立。实际剂量需依据品牌说明书与临床评估。
+        </div>
+      </div>
+    </div>
+
+    <div class="matrix-section">
+      <div class="section-title" style="margin-bottom:14px">
+        <span class="section-title-icon">💉</span> HA 填充剂竞品矩阵
+      </div>
+      <div class="matrix-wrap" style="overflow-x:auto">
+        <table class="matrix-table" id="haFillerTable" style="min-width:1500px">
+          <thead>
+            <tr>
+              <th style="width:120px">产品名称</th>
+              <th style="width:140px">英文商品名</th>
+              <th style="width:120px">所属公司</th>
+              <th style="width:60px">产地</th>
+              <th style="width:100px">产品类型</th>
+              <th style="width:120px">有效成分</th>
+              <th style="width:120px">获批时间(适应症)</th>
+              <th style="width:100px">生产工艺</th>
+              <th style="width:80px">交联程度</th>
+              <th style="width:80px">分子大小</th>
+              <th style="width:150px">核心特点及优势</th>
+              <th style="width:80px">维持时间</th>
+              <th style="width:80px">含利多卡因</th>
+            </tr>
+          </thead>
+          <tbody id="haFillerBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="matrix-section">
+      <div class="section-title" style="margin-bottom:14px">
+        <span class="section-title-icon">🧬</span> PCL/PLLA 再生填充剂竞品矩阵
+      </div>
+      <div class="matrix-wrap" style="overflow-x:auto">
+        <table class="matrix-table" id="pclpllaTable" style="min-width:1500px">
+          <thead>
+            <tr>
+              <th style="width:120px">产品名称</th>
+              <th style="width:140px">英文商品名</th>
+              <th style="width:120px">所属公司</th>
+              <th style="width:60px">产地</th>
+              <th style="width:100px">产品类型</th>
+              <th style="width:120px">有效成分</th>
+              <th style="width:120px">获批时间(适应症)</th>
+              <th style="width:100px">生产工艺</th>
+              <th style="width:80px">交联程度</th>
+              <th style="width:80px">分子大小</th>
+              <th style="width:150px">核心特点及优势</th>
+              <th style="width:80px">维持时间</th>
+              <th style="width:80px">含利多卡因</th>
+            </tr>
+          </thead>
+          <tbody id="pclpllaBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="matrix-section">
+      <div class="section-title" style="margin-bottom:14px">
+        <span class="section-title-icon">🦷</span> CaHA 填充剂竞品矩阵
+      </div>
+      <div class="matrix-wrap" style="overflow-x:auto">
+        <table class="matrix-table" id="cahaTable" style="min-width:1500px">
+          <thead>
+            <tr>
+              <th style="width:120px">产品名称</th>
+              <th style="width:140px">英文商品名</th>
+              <th style="width:120px">所属公司</th>
+              <th style="width:60px">产地</th>
+              <th style="width:100px">产品类型</th>
+              <th style="width:120px">有效成分</th>
+              <th style="width:120px">获批时间(适应症)</th>
+              <th style="width:100px">生产工艺</th>
+              <th style="width:80px">交联程度</th>
+              <th style="width:80px">分子大小</th>
+              <th style="width:150px">核心特点及优势</th>
+              <th style="width:80px">维持时间</th>
+              <th style="width:80px">含利多卡因</th>
+            </tr>
+          </thead>
+          <tbody id="cahaBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="matrix-section">
+      <div class="section-title" style="margin-bottom:14px">
+        <span class="section-title-icon">💧</span> 水光竞品矩阵
+      </div>
+      <div class="matrix-wrap" style="overflow-x:auto">
+        <table class="matrix-table" id="skinBoosterTable" style="min-width:1500px">
+          <thead>
+            <tr>
+              <th style="width:130px">产品名称</th>
+              <th style="width:140px">英文商品名</th>
+              <th style="width:120px">所属公司</th>
+              <th style="width:55px">产地</th>
+              <th style="width:95px">竞争层级</th>
+              <th style="width:120px">产品类型</th>
+              <th style="width:140px">有效成分</th>
+              <th style="width:130px">获批状态(适应症)</th>
+              <th style="width:120px">核心技术</th>
+              <th style="width:85px">交联方式</th>
+              <th style="width:85px">HA浓度/规格</th>
+              <th style="width:65px">含利多卡因</th>
+              <th style="width:160px">核心特点及优势</th>
+              <th style="width:75px">维持时间</th>
+            </tr>
+          </thead>
+          <tbody id="skinBoosterBody"></tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+
+  // Botox matrix special rendering (12-field structure)
+  document.getElementById('botoxMatrixBody').innerHTML = botoxMatrixData.map(d => `
+    <tr>
+      <td class="cmp-name"><a href="${d.link}" target="_blank" rel="noopener">${d.name}</a></td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.en}</td>
+      <td>${d.company}</td>
+      <td>${d.origin}</td>
+      <td style="font-size:11px">${d.type}</td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.ingredient}</td>
+      <td style="font-size:11px;white-space:normal">${d.excipient}</td>
+      <td style="font-size:11px;white-space:normal">${d.approval}</td>
+      <td style="font-size:11px">${d.spec}</td>
+      <td style="font-size:11px">${d.diffusion}</td>
+      <td style="font-size:10px;white-space:normal">${d.conversion}</td>
+      <td style="font-size:12px;line-height:1.4">${d.advantage}</td>
+      <td style="font-size:11px;white-space:normal">${d.duration}</td>
+      <td style="font-size:11px;line-height:1.4;max-width:160px"><a href="${d.link}" target="_blank" rel="noopener">${d.update}</a></td>
+    </tr>
+  `).join('');
+
+  // HA filler matrix rendering
+  document.getElementById('haFillerBody').innerHTML = haFillerData.map(d => `
+    <tr>
+      <td class="cmp-name"><a href="${d.link}" target="_blank" rel="noopener">${d.name}</a></td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.en}</td>
+      <td>${d.company}</td>
+      <td>${d.origin}</td>
+      <td style="font-size:11px">${d.type}</td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.ingredient}</td>
+      <td style="font-size:11px;white-space:normal">${d.approval}</td>
+      <td style="font-size:11px">${d.process}</td>
+      <td style="font-size:11px;text-align:center">${d.xlink}</td>
+      <td style="font-size:11px;text-align:center">${d.particle}</td>
+      <td style="font-size:12px;line-height:1.4">${d.advantage}</td>
+      <td style="font-size:11px;white-space:normal">${d.duration}</td>
+      <td style="text-align:center;font-size:11px">${d.lidocaine}</td>
+    </tr>
+  `).join('');
+
+  // PCL/PLLA regenerative filler matrix rendering
+  document.getElementById('pclpllaBody').innerHTML = pclpllaData.map(d => `
+    <tr>
+      <td class="cmp-name"><a href="${d.link}" target="_blank" rel="noopener">${d.name}</a></td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.en}</td>
+      <td>${d.company}</td>
+      <td>${d.origin}</td>
+      <td style="font-size:11px">${d.type}</td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.ingredient}</td>
+      <td style="font-size:11px;white-space:normal">${d.approval}</td>
+      <td style="font-size:11px">${d.process}</td>
+      <td style="font-size:11px;text-align:center">${d.xlink}</td>
+      <td style="font-size:11px;text-align:center">${d.particle}</td>
+      <td style="font-size:12px;line-height:1.4">${d.advantage}</td>
+      <td style="font-size:11px;white-space:normal">${d.duration}</td>
+      <td style="text-align:center;font-size:11px">${d.lidocaine}</td>
+    </tr>
+  `).join('');
+
+  // CaHA filler matrix rendering
+  document.getElementById('cahaBody').innerHTML = cahaData.map(d => `
+    <tr>
+      <td class="cmp-name"><a href="${d.link}" target="_blank" rel="noopener">${d.name}</a></td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.en}</td>
+      <td>${d.company}</td>
+      <td>${d.origin}</td>
+      <td style="font-size:11px">${d.type}</td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.ingredient}</td>
+      <td style="font-size:11px;white-space:normal">${d.approval}</td>
+      <td style="font-size:11px">${d.process}</td>
+      <td style="font-size:11px;text-align:center">${d.xlink}</td>
+      <td style="font-size:11px;text-align:center">${d.particle}</td>
+      <td style="font-size:12px;line-height:1.4">${d.advantage}</td>
+      <td style="font-size:11px;white-space:normal">${d.duration}</td>
+      <td style="text-align:center;font-size:11px">${d.lidocaine}</td>
+    </tr>
+  `).join('');
+
+  // ── 水光竞品矩阵 ──
+  const skinBoosterData = [
+    { name:'SkinVive', en:'SKINVIVE by JUVÉDERM® (VYC-12L)', company:'艾尔建美学 Allergan', origin:'美国', tier:'—', tierColor:'#999', type:'交联HA微滴注射剂（肤质赋活）', ingredient:'交联HA 12mg/mL + 利多卡因 0.3%（BDDE交联）', approval:'FDA 2023年5月（面颊肤质改善）；2025年9月全球扩展至57个市场；国内尚未获批，临床推进中', process:'Vycross专利交联技术（高分子量+低分子量HA交联）', xlink:'BDDE化学交联', concentration:'12mg/mL（1mL/支）', lidocaine:'是（0.3%）', advantage:'全球首款FDA获批HA微滴肤质注射剂，宣称"市场最长持续补水注射剂"。皮内微滴注射80-150点，6个月维持率57%。国内未获批但水货已流通。', duration:'6-9个月', link:'https://www.skinvive.com/' },
+    { name:'瑞蓝唯瑅', en:'Restylane Vital (Skinboosters)', company:'高德美 Galderma（Q-Med）', origin:'瑞典', tier:'①直接竞品', tierColor:'#e74c3c', type:'交联HA微滴注射剂（长效水光）', ingredient:'交联HA 20mg/mL（BDDE交联，非动物源性）', approval:'NMPA 2019年（国械注进20193130625，手背真皮深层改善皮肤外观）', process:'NASHA®专利技术（小颗粒交联分子，粒径0.02-0.4mm，交联度<1%）', xlink:'BDDE化学交联（低交联度）', concentration:'20mg/mL（1mL/支）', lidocaine:'否', advantage:'国内首款进口长效水光，"水光爱马仕"。NASHA小颗粒结构稳定不易散架，真皮深层注射3次疗；可维持15个月。常需复配稀释使用。', duration:'8-15个月（3次疗程）', link:'https://www.medbelove.com/' },
+    { name:'润致·娃娃针', en:'Runzhi Baby Needle', company:'华熙生物 Bloomage', origin:'中国', tier:'①直接竞品', tierColor:'#e74c3c', type:'微交联HA水光（长效水光）', ingredient:'微交联HA 12mg/mL + 利多卡因 3mg/mL（交联度0.6%）', approval:'NMPA 2020年（国械注准20203130295，面部真皮浅层至中层纠正静态额部皱纹）；2025年推出升级版', process:'HEC微交联技术（粒径~200μm，50万颗微凝胶颗粒，三维网状结构）', xlink:'BDDE微交联（交联度0.6%）', concentration:'12mg/mL（2mL/支，总量24mg）', lidocaine:'是（3mg/mL）', advantage:'国内首款国产微交联HA水光，2025年推出升级版。临床有效率87.51%（vs非交联HA 21.88%），GAIS应答率100%。"玻胶双补"机制：直补HA+促生胶原。', duration:'1-3个月（单次）/ 6-12个月（疗程）', link:'https://www.medbelove.com/' },
+    { name:'冭活泡泡针', en:'Taihuo Bubble Needle', company:'爱美客 Imeik', origin:'中国', tier:'①直接竞品', tierColor:'#e74c3c', type:'抗糖抗氧复合水光（III类械）', ingredient:'L-肌肽 + 双分子非交联HA + 11种氨基酸 + 维生素B2', approval:'NMPA 2021年（III类医疗器械，真皮层注射）', process:'气泡注射技术 + 活性肽双抗体系（抗糖+抗氧）', xlink:'非交联', concentration:'2.5mL/支', lidocaine:'否', advantage:'爱美客"抗糖抗氧"水光，NMPA III类械认证；L-肌肽清除自由基+抑制糖基化，双分子HA大分子锁水+小分子深层补水；可复配嗨体2.5/润致娃娃针联合治疗', duration:'3-4周（单次）/ 6个月（4次疗程）', link:'https://www.imeik.com/' },
+    { name:'菲洛嘉NCTF 135HA', en:'NCTF® BOOST 135HA', company:'菲欧曼 FILLMED（原Filorga医美线）', origin:'法国', tier:'②间接竞品', tierColor:'#f39c12', type:'动能素（营养复合HA溶液）', ingredient:'非交联HA 5mg/mL + 53种活性成分（23氨基酸+12维他命+6辅酶+5核酸+6矿物质+1抗氧化物）', approval:'CE认证；国内仅械2类（非III类械3），以妆字号/械一号流通，超适应症使用', process:'中胚层鸡尾酒疗法（NCTF®专利配方，53+1种再生活性成分融合）', xlink:'非交联', concentration:'HA 5mg/mL（3mL/支）', lidocaine:'否', advantage:'"高配版水光针"，53种营养成分全面补充。注意：国内为械2非械3，合规层级低于III类水光；市场存在国产Vitalorga仿品（红盒）。', duration:'3-6个月（疗程）', link:'https://m.igengmei.com/base_wiki/product/16/' },
+    { name:'丽珠兰（Rejuran）', en:'REJURAN (c-PDRN)', company:'Pharma Research Co., Ltd.', origin:'韩国', tier:'②间接竞品', tierColor:'#f39c12', type:'PDRN再生水光（三文鱼DNA注射剂）', ingredient:'c-PDRN（多聚脱氧核糖核苷酸）20mg/2.5mL + 透明质酸钠 + 4种氨基酸', approval:'韩国KFDA获批；国内无NMPA三类械证（械2/妆字号流通）；2025年8月海南博鳌乐城特许进口', process:'c-PDRN®专利技术（三文鱼精子DNA提取，高温灭菌去活性保留生物结构）', xlink:'非交联', concentration:'PDRN 20mg/2.5mL + HA（2mL×2支/盒）', lidocaine:'否（部分型号含）', advantage:'PDRN路线龙头，"三文鱼水光"代名词。注意：国内为械2非械3，注射剂型未获NMPA三类证，仅博鳌乐城特许使用。', duration:'3-6个月', link:'https://www.sigma-stat.com/' },
+    { name:'嗨体2.5（水光版）', en:'Hearty 2.5mL', company:'爱美客 Imeik', origin:'中国', tier:'②间接竞品', tierColor:'#f39c12', type:'非交联HA复合溶液（营养水光）', ingredient:'非交联HA 5mg/mL + L-肌肽 + 3种氨基酸(脯/甘/丙) + 维生素B2', approval:'NMPA 2016年（国械注准20163131804，颈部皱纹；2.5mL规格超适应症用于面部水光）', process:'细胞赋活疗法（311滋养复弹：3氨基酸+1肌肽+1维生素+0交联HA）', xlink:'非交联', concentration:'HA 5mg/mL（2.5mL/支）', lidocaine:'否', advantage:'爱美客"嗨体系列"水光规格，粘度最稀、适合全脸平铺。市场已做烂，部分机构127元即可打。嗨体2.5+1.5联合治疗为主流方案。', duration:'1-3个月（单次）', link:'http://www.9191mr.com/cailiao/zx-186/2411/' },
+    { name:'润致·剔透', en:'Revitacare Titou', company:'华熙生物 Bloomage', origin:'中国', tier:'②间接竞品', tierColor:'#f39c12', type:'中胚层美塑动能素（非交联）', ingredient:'非交联HA + 复合氨基酸（甘氨酸/脯氨酸/赖氨酸/亮氨酸等多种）', approval:'华熙中胚层美塑系列（动能素Skin Booster路线）', process:'非交联HA + 复合氨基酸中胚层疗法', xlink:'非交联', concentration:'多规格', lidocaine:'否', advantage:'润致中胚层美塑"缇透"款，动能素路线；通过复合氨基酸+HA干预细胞外基质衰老，改善面部肤质。与润致娃娃针(微交联长效水光)形成产品矩阵分层。', duration:'1-3个月（单次）', link:'https://www.bloomagebiotech.com/' },
+    { name:'普丽妍·胶原+HA', en:'Puliyan Collagen+HA', company:'普丽妍(南京)医疗科技', origin:'中国', tier:'③新兴合规', tierColor:'#27ae60', type:'HA+重组胶原复合溶液（动能素）', ingredient:'透明质酸钠 + 重组类胶原蛋白（双成分复合）', approval:'NMPA 2026年4月（国械注准20263130839，真皮层注射改善面颊部平滑度）', process:'无菌加工技术（HA+重组类胶原双成分协同复配）', xlink:'非交联', concentration:'多规格', lidocaine:'否', advantage:'国内首款以"透明质酸+重组类胶原蛋白"双成分复配获批的合规III类械产品；临床效果优于单独使用HA或重组胶原，从单一成分向协同组合演进', duration:'3-6个月', link:'https://www.toutiao.com/article/7634448788295287339' },
+    { name:'润百颜·玻玻', en:'BIOHYALUX HA Solution', company:'华熙生物 Bloomage', origin:'中国', tier:'③新兴合规', tierColor:'#27ae60', type:'非交联HA基础水光（合规III类械）', ingredient:'非交联HA 15mg/mL + 利多卡因 3mg/mL（Hyature®超纯注射级HA）', approval:'NMPA 2025年4月25日（国械注准20253130824，改善成人皮肤干燥、肤色暗沉）', process:'Hyature®超纯注射级HA + 多重分子量段配比 + 分子包裹缓释利多卡因', xlink:'非交联', concentration:'15mg/mL（2mL/支，总量30mg）', lidocaine:'是（0.3%）', advantage:'国内首款明确"面部肤质改善"适应症的合规III类械水光。临床有效率94%，AQP3活性提升35%。标志水光市场从"擦边球"进入"持证竞争"时代。', duration:'3个月以上', link:'https://www.cet.com.cn/wzsy/kjzx/10198480.shtml' },
+    { name:'海雅美·克拉赫本', en:'Hyamed Pure HA', company:'海雅美 Hyamed', origin:'瑞士', tier:'③新兴合规', tierColor:'#27ae60', type:'非交联HA基础水光（合规III类械·进口）', ingredient:'非交联HA（纯净水光，无额外添加，原料来自华熙生物）', approval:'NMPA 2025年获批（国内首款合规进口基础水光III类械证）', process:'高纯度非交联HA精制工艺（无交联剂、无营养添加）', xlink:'非交联', concentration:'预计15-20mg/mL', lidocaine:'未公开', advantage:'国内首款合规进口基础水光，"纯净水光"定位。与润百颜玻玻一前一后获批，共同标志水光合规化落地。原料依赖华熙生物供应链。', duration:'1-3个月（预计）', link:'https://www.toutiao.com/article/7506022171555267081' },
+    { name:'冻妍', en:'Dongyan', company:'四环医药', origin:'中国', tier:'②间接竞品', tierColor:'#f39c12', type:'动能素水光（营养复合溶液）', ingredient:'非交联HA + 复合营养成分（氨基酸/维生素/辅酶等）', approval:'械2类（非III类械3）', process:'中胚层营养复合疗法', xlink:'非交联', concentration:'多规格', lidocaine:'否', advantage:'四环医药动能素水光，与乐提葆肉毒形成协同矩阵；定位中端营养水光市场', duration:'1-3个月（单次）', link:'https://www.sihuanpharm.com/' },
+    { name:'漾活', en:'Yanghuo', company:'新氧 So-Young', origin:'中国', tier:'②间接竞品', tierColor:'#f39c12', type:'平台自有品牌水光', ingredient:'非交联HA + 复合营养成分', approval:'械2类（平台自有品牌，非III类械3）', process:'平台自有品牌贴牌路线', xlink:'非交联', concentration:'多规格', lidocaine:'否', advantage:'新氧平台自有品牌水光，依托互联网医美平台渠道下沉；定位平价水光市场，合规层级为械2', duration:'1-3个月（单次）', link:'https://www.soyoung.com/' }
+  ];
+
+  document.getElementById('skinBoosterBody').innerHTML = skinBoosterData.map(d => `
+    <tr>
+      <td class="cmp-name"><a href="${d.link}" target="_blank" rel="noopener">${d.name}</a></td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.en}</td>
+      <td>${d.company}</td>
+      <td>${d.origin}</td>
+      <td style="text-align:center"><span style="display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;color:#fff;background:${d.tierColor};white-space:normal">${d.tier}</span></td>
+      <td style="font-size:11px">${d.type}</td>
+      <td style="font-size:11px;font-family:var(--font-mono)">${d.ingredient}</td>
+      <td style="font-size:11px;white-space:normal">${d.approval}</td>
+      <td style="font-size:11px">${d.process}</td>
+      <td style="font-size:11px;text-align:center">${d.xlink}</td>
+      <td style="font-size:11px;text-align:center">${d.concentration}</td>
+      <td style="text-align:center;font-size:11px">${d.lidocaine}</td>
+      <td style="font-size:12px;line-height:1.4">${d.advantage}</td>
+      <td style="font-size:11px;white-space:normal">${d.duration}</td>
+    </tr>
+  `).join('');
+}
+
+
+
+</script>
+</body>
+</html>
