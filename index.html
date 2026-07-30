@@ -2052,7 +2052,7 @@ function renderMatrix(main) {
     { name:'碧萃诗', en:'Beatrice', company:'常州药物研究所', origin:'中国', type:'HA填充剂（反相单相）', ingredient:'交联透明质酸钠 (反相交联)', approval:'2018年（国械注准20183130109，中重度鼻唇沟；2022更新获批）', process:'反相交联 + 蛋白除杂 + 均质凝胶', xlink:'单相中交联', particle:'均质无颗粒', advantage:'常州药物所(40年HA大厂)出品，反相单相交联，交联剂残留<0.5ppm', duration:'6-12个月', lidocaine:'否', link:'https://www.beatrice1984.com/' }
   ];
 
-  // ── Category 2: PCL/PLLA/PMMA 再生填充剂 ──
+  // ── Category 2: PCL/PLLA/PDLLA/PMMA 再生填充剂 ──
   const pclpllaData = [
     // ── PCL 少女针 ──
     { name:'伊妍仕', en:'Ellansé (PCL)', company:'华东医药 (欣可丽美学)', origin:'荷兰', type:'PCL生物刺激剂（少女针）', ingredient:'30%聚己内酯微球(PCL) + 70%CMC凝胶', approval:'2021年（中面部容积/轮廓塑形）；2026年S型额部变更注册获NMPA受理', process:'STAT专利微球技术', xlink:'—（非交联）', particle:'S/M/L/E四型微球(1-4年长效)', advantage:'国内首款合规少女针，经典M型覆盖500+机构，上市首年破6亿、2023年超10亿；S/M/L/E四型分层；华东医药全品类医美战略核心', duration:'1-4年（长效刺激胶原）', lidocaine:'否', link:'https://baike.baidu.com/item/Ellansé' },
@@ -2060,15 +2060,20 @@ function renderMatrix(main) {
     // ── PLLA 童颜针 ──
     { name:'塑妍萃', en:'Sculptra (PLLA)', company:'高德美 Galderma', origin:'法国', type:'PLLA生物刺激剂', ingredient:'聚左旋乳酸 (PLLA) + CMC + 甘露醇', approval:'2025年9月（面部容积缺失/皱纹）', process:'PLLA微粒冻干粉技术', xlink:'—（非交联）', particle:'PLLA微粒', advantage:'PLLA国际标杆产品，高德美三品类协同，全球学术资源强大', duration:'18-24个月', lidocaine:'否', link:'https://www.galdermaaesthetics.com.cn/sculptra' },
     { name:'艾维岚', en:'Löviselle (PLLA)', company:'长春圣博玛', origin:'中国', type:'PLLA生物刺激剂（童颜针）', ingredient:'聚左旋乳酸 (PLLA) + CMC + 甘露醇', approval:'2021年4月（国械注准20213130276）—国内首款PLLA童颜针', process:'MEC-SPACE专利技术，Tri-H专利控制2年匀速降解', xlink:'—（非交联）', particle:'PLLA微球', advantage:'国内首款NMPA三类证PLLA童颜针，中科院长春应化所技术背景，植物发酵原料可降解为CO₂和水', duration:'约2年（3次疗程维持30个月）', lidocaine:'否', link:'http://loviselle.com/' },
-    { name:'濡白天使', en:'Angel Gel (PLLA+HA)', company:'爱美客', origin:'中国', type:'PLLA+HA复合填充剂', ingredient:'PLLA微球+交联HA', approval:'2021年（面部容积填充）', process:'PLLA微粒分散于HA载体', xlink:'HA载体交联', particle:'PLLA微粒+HA凝胶', advantage:'国产替代领军者，PLLA+HA双重机制，渠道下沉+橙毒协同', duration:'12-18个月', lidocaine:'否', link:'https://www.imeik.com/' },
-    { name:'艾塑菲', en:'AestheFill (PDLLA)', company:'REGEN Biotech / 爱美客', origin:'韩国', type:'PDLLA生物刺激剂（童颜针）', ingredient:'聚双旋乳酸 (PDLLA)', approval:'2024年1月（鼻唇沟皱纹）—首款进口童颜针', process:'PDLLA多孔微球技术', xlink:'—（非交联）', particle:'PDLLA微球', advantage:'首款进口童颜针，爱美客2025年收购REGEN 85%股权，纳入臻爱灵塑系列', duration:'18-24个月', lidocaine:'否', link:'https://www.regenbio.co.kr/' },
     { name:'普丽妍', en:'Puliyan (PLLA)', company:'普丽妍(南京)医疗科技', origin:'中国', type:'PLLA生物刺激剂（童颜针）', ingredient:'聚左旋乳酸微球(PLLA) + CMC + 甘露醇', approval:'2024年11月21日（国械注准20243132279，鼻唇沟）—国内第4款国产童颜针', process:'国内首款全流程无菌灌装工艺（非辐照灭菌）', xlink:'—（非交联）', particle:'PLLA微球(光滑均一)', advantage:'国内首款全流程无菌灌装童颜针，内毒素<0.125EU/瓶远低于国标0.5EU/ml；特性黏度3-4dl/g高于辐照灭菌竞品；2025年8月完成5000万美元C轮融资', duration:'18-24个月', lidocaine:'否', link:'https://www.xhby.net/content/s6891f985e4b0310b14ad3c3c.html' },
-    // ── 复合长效/永久填充剂 ──
-    { name:'宝尼达', en:'Bonita', company:'爱美客', origin:'中国', type:'复合长效填充剂（HA+PVA微球）', ingredient:'80%复合透明质酸钠 + 20% PVA聚乙烯醇微球 + HPMC', approval:'2012年（国械注准20163132497，真皮深层至皮下浅层，中重度额纹/鼻唇沟）', process:'固液渐变互穿交联 + 微球悬浮', xlink:'—（含微球）', particle:'PVA微球', advantage:'爱美客长效复合填充，3次增量注射可维持5-10年；PVA微球刺激胶原再生，骨性支撑路线', duration:'5-10年（长效）', lidocaine:'否', link:'https://www.imeik.com/' },
+    // ── PDLLA 童颜针 ──
+    { name:'艾塑菲', en:'AestheFill (PDLLA)', company:'REGEN Biotech / 爱美客', origin:'韩国', type:'PDLLA生物刺激剂（童颜针）', ingredient:'聚双旋乳酸 (PDLLA)', approval:'2024年1月（鼻唇沟皱纹）—首款进口童颜针', process:'PDLLA多孔微球技术', xlink:'—（非交联）', particle:'PDLLA微球', advantage:'首款进口童颜针，爱美客2025年收购REGEN 85%股权，纳入臻爱灵塑系列', duration:'18-24个月', lidocaine:'否', link:'https://www.regenbio.co.kr/' },
+    // ── PLLA+HA 复合 ──
+    { name:'濡白天使', en:'Angel Gel (PLLA+HA)', company:'爱美客', origin:'中国', type:'PLLA+HA复合填充剂', ingredient:'PLLA微球+交联HA', approval:'2021年（面部容积填充）', process:'PLLA微粒分散于HA载体', xlink:'HA载体交联', particle:'PLLA微粒+HA凝胶', advantage:'国产替代领军者，PLLA+HA双重机制，渠道下沉+橙毒协同', duration:'12-18个月', lidocaine:'否', link:'https://www.imeik.com/' },
+    { name:'臻好逑', en:'Zhenhaoqiu (PLLA+HA)', company:'玮沐医疗', origin:'中国', type:'PLLA+HA复合再生填充剂（童颜针）', ingredient:'PLLA微球+交联透明质酸', approval:'2026年3月（NMPA III类注册证），6月首批量产交付', process:'PLLA+HA复配技术', xlink:'HA载体交联', particle:'PLLA微球+HA凝胶', advantage:'第14款获批童颜针，PLLA+HA复合路线，从拿证到交付仅3个月，国产童颜针新势力', duration:'12-18个月', lidocaine:'否', link:'https://www.sohu.com/a/1040512332_122369511' },
+    // ── PDLLA+HA 复合（华熙代理JuveLook系列）──
+    { name:'Juvelook', en:'Juvelook (PDLLA+HA)', company:'韭国 VAIM / 华熙生物（中国代理）', origin:'韭国', type:'PDLLA+HA复合胶原增生剂（童颜水光向）', ingredient:'PDLLA 42.5mg + 非交联HA 7.5mg（50mg/瓶）', approval:'2026年7月29日大陆上市（华熙生物代理）;NMPA证号待确认', process:'PDLLA球形微球（10-40μm）多孔网状结构 + HA凝胶载体', xlink:'HA非交联', particle:'PDLLA微球（20-40μm）', advantage:'韭国VAIM原研;华熙生物拿下国内代理;PDLLA+HA双效（即时水合+长期胶原再生）;FDA/CE/KFDA三重认证;浅层真皮注射;定位“童颜水光”', duration:'6-12月', lidocaine:'否', link:'https://juvelook.com/' },
+    { name:'Lenisna', en:'Lenisna (PDLLA+HA)', company:'韭国 VAIM / 华熙生物（中国代理）', origin:'韭国', type:'PDLLA+HA复合再生填充剂（塑颜向）', ingredient:'PDLLA 170mg + 非交联HA 30mg（200mg/瓶）', approval:'2026年7月29日大陆上市（华熙生物代理）;NMPA证号待确认', process:'PDLLA球形微球（40-80μm）多孔网状结构 + HA凝胶载体', xlink:'HA非交联', particle:'PDLLA微球（40-80μm）', advantage:'韭国VAIM原研;Juvelook Volume大分子版;华熙生物代理;PDLLA 170mg+HA 30mg;中深层/皮下注射;专注体积填充与轮廓提升;3次疗程维持18-24月', duration:'18-24月', lidocaine:'否', link:'https://juvelook.com/' },
+    // ── PMMA 永久填充剂 ──
     { name:'爱贝芙', en:'ArteColl (PMMA)', company:'荷兰汉福生物科技', origin:'荷兰', type:'PMMA永久性填充剂', ingredient:'80%牛胶原蛋白溶液 + 20% PMMA聚甲基丙烯酸甲酯微球 + 0.3%利多卡因', approval:'2004年首批（国械注进20163132859，真皮深层/鼻唇沟/隆鼻）；2021年续签至2026.10.25', process:'PMMA微球+牛胶原载体复合', xlink:'—（永久微球）', particle:'PMMA微球(不可吸收)', advantage:'国内首批永久性填充剂；PMMA微球不可吸收、刺激自体胶原包裹；理论维持5-10年以上；仅限授权机构与认证医生操作', duration:'5-10年以上（永久）', lidocaine:'是（0.3%）', link:'http://m.mp17.com/zx/ym_30254.html' },
     { name:'贝丽菲尔', en:'Bellafill (PMMA)', company:'圣诺华 Suneva Medical', origin:'美国', type:'PMMA永久性填充剂', ingredient:'80%牛胶原蛋白溶液 + 20% PMMA微球 + 0.3%利多卡因', approval:'2024年1月（国械注进20243130041，真皮深层/鼻唇沟）', process:'PMMA微球+牛胶原载体复合（与爱贝芙成分一致）', xlink:'—（永久微球）', particle:'PMMA微球(不可吸收)', advantage:'FDA 2006年批准的永久性填充剂，成分与爱贝芙一致；2024年NMPA获批引入中国，新增竞争格局', duration:'5年以上（永久）', lidocaine:'是（0.3%）', link:'https://www.weibo.com/3279120854/OhSconf6b' },
-    // ── PLLA+HA 新势力（放最后）──
-    { name:'臻好逑', en:'Zhenhaoqiu (PLLA+HA)', company:'玮沐医疗', origin:'中国', type:'PLLA+HA复合再生填充剂（童颜针）', ingredient:'PLLA微球+交联透明质酸', approval:'2026年3月（NMPA III类注册证），6月首批量产交付', process:'PLLA+HA复配技术', xlink:'HA载体交联', particle:'PLLA微球+HA凝胶', advantage:'第14款获批童颜针，PLLA+HA复合路线，从拿证到交付仅3个月，国产童颜针新势力', duration:'12-18个月', lidocaine:'否', link:'https://www.sohu.com/a/1040512332_122369511' }
+    // ── HA+PVA 复合长效 ──
+    { name:'宝尼达', en:'Bonita (HA+PVA)', company:'爱美客', origin:'中国', type:'复合长效填充剂（HA+PVA微球）', ingredient:'80%复合透明质酸钠 + 20% PVA聚乙烯醇微球 + HPMC', approval:'2012年（国械注准20163132497，真皮深层至皮下浅层，中重度额纹/鼻唇沟）', process:'固液渐变互穿交联 + 微球悬浮', xlink:'—（含微球）', particle:'PVA微球', advantage:'爱美客长效复合填充，3次增量注射可维持5-10年；PVA微球刺激胶原再生，骨性支撑路线', duration:'5-10年（长效）', lidocaine:'否', link:'https://www.imeik.com/' }
   ];
 
   // ── Category 3: CaHA 填充剂 ──
@@ -2093,7 +2098,7 @@ function renderMatrix(main) {
     ${breadcrumbHTML('tab0')}
     <div class="page-header">
       <div class="page-title">🗂 竞品矩阵 — 全维度竞品对比分析</div>
-      <div class="page-subtitle">COMPETITOR MATRIX // HA Fillers · PCL/PLLA Biostimulators · CaHA Fillers · Botulinum Toxin</div>
+      <div class="page-subtitle">COMPETITOR MATRIX // HA Fillers · PCL/PLLA/PDLLA Biostimulators · CaHA Fillers · Botulinum Toxin</div>
     </div>
 
     <div class="matrix-section">
